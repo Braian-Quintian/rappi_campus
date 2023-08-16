@@ -105,19 +105,19 @@ Rappi es una aplicación móvil que ofrece una variedad de servicios a los usuar
 
 ## Bibliografia
 
-- [Rappi](https://www.rappi.com.co/){:target="_blank"}
-- [¿Qué es?](https://blog.rappi.com/que-es-rappi/){:target="_blank"}
-- [¿Cómo funciona?](https://www.lacoladerata.co/opinion/analisis/como-funcionan-las-companias-de-domicilio-como-rappi/){:target="_blank"}
-- [Éxito de rappi](https://www.escuelasuperiordenegocios.mx/post/rappi-y-la-fórmula-de-su-éxito){:target="_blank"}
-- [¿Cómo se inicia con rappi?](https://merchants.rappi.com/es-co/recursos/empieza-con-rappi){:target="_blank"}
-- [Historia de rappi](https://about.rappi.com/es/nuestra-historia){:target="_blank"}
-- [Trabajar en rappi](https://coworkings.co/como-hacer-para-trabajar-en-rappi/){:target="_blank"}
-- [Departamentos](https://merchants.rappi.com/es-co/recursos){:target="_blank"}
-- [Recursos](https://merchants.rappi.com/es-co/que-ofrecemos){:target="_blank"}
-- [Cómo funcionan estas compañías](https://blog.wearedrew.co/caso-de-estudio/caso-rappi-revolucion-en-el-delivery){:target="_blank"}
-- [RappiPay](https://rappipay.co/acerca-de-rappipay/){:target="_blank"}
-- [RappiTravel](https://travel.rappi.com.co/){:target="_blank"}
-- [RappiFavor](https://blog.rappi.com/que-es-rappifavor/){:target="_blank"}
+- [Rappi](https://www.rappi.com.co/)
+- [¿Qué es?](https://blog.rappi.com/que-es-rappi/)
+- [¿Cómo funciona?](https://www.lacoladerata.co/opinion/analisis/como-funcionan-las-companias-de-domicilio-como-rappi/)
+- [Éxito de rappi](https://www.escuelasuperiordenegocios.mx/post/rappi-y-la-fórmula-de-su-éxito)
+- [¿Cómo se inicia con rappi?](https://merchants.rappi.com/es-co/recursos/empieza-con-rappi)
+- [Historia de rappi](https://about.rappi.com/es/nuestra-historia)
+- [Trabajar en rappi](https://coworkings.co/como-hacer-para-trabajar-en-rappi/)
+- [Departamentos](https://merchants.rappi.com/es-co/recursos)
+- [Recursos](https://merchants.rappi.com/es-co/que-ofrecemos)
+- [Cómo funcionan estas compañías](https://blog.wearedrew.co/caso-de-estudio/caso-rappi-revolucion-en-el-delivery)
+- [RappiPay](https://rappipay.co/acerca-de-rappipay/)
+- [RappiTravel](https://travel.rappi.com.co/)
+- [RappiFavor](https://blog.rappi.com/que-es-rappifavor/)
 
 
 
@@ -127,11 +127,11 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 ![Rappi-Campus](/assets/img/rappi-campus.png)
 
 ## Qué tecnologias se implementarán:
-- [React](https://es.react.dev/){:target="_blank"}
-- [MongoDB](mongodb.com/docs/){:target="_blank"}
-- [Express](https://expressjs.com/es/resources/glossary.html){:target="_blank"}
-- [NodeJS](https://nodejs.org/en/docs){:target="_blank"}
-- [Typescript](https://www.typescriptlang.org/docs/){:target="_blank"}
+- [React](https://es.react.dev/)
+- [MongoDB](mongodb.com/docs/)
+- [Express](https://expressjs.com/es/resources/glossary.html)
+- [NodeJS](https://nodejs.org/en/docs)
+- [Typescript](https://www.typescriptlang.org/docs/)
 
 - Se implementarán más tecnologias que se irán añadiendo conforme el proyecto avanza
 
@@ -275,10 +275,10 @@ Ejemplo:
 
 Bibliografía:
 - [Notion](https://www.notion.so/)
-- [¿Qué es Notion y cómo funciona? Guía completa - Crehana](https://www.crehana.com/blog/negocios/que-es-notion/){:target="_blank"}
-- [Cómo Usar Notion: Guía Completa Para Principiantes - Juan Pardo](https://juanpardo.es/como-usar-notion/){:target="_blank"}
-- [Notion, qué es y cómo funciona - El Grupo Informático](https://www.elgrupoinformatico.com/tutoriales/notion-que-como-funciona-t77621.html){:target="_blank"}
+- [¿Qué es Notion y cómo funciona? Guía completa - Crehana](https://www.crehana.com/blog/negocios/que-es-notion/)
+- [Cómo Usar Notion: Guía Completa Para Principiantes - Juan Pardo](https://juanpardo.es/como-usar-notion/)
+- [Notion, qué es y cómo funciona - El Grupo Informático](https://www.elgrupoinformatico.com/tutoriales/notion-que-como-funciona-t77621.html)
 
 ## Autores
-- [Braian Alberto Quintian Romero](https://github.com/Braian-Quintian){:target="_blank"}
-- [Daniel Santiago Vera Anaya](https://github.com/dVera17){:target="_blank"}
+- [Braian Alberto Quintian Romero](https://github.com/Braian-Quintian)
+- [Daniel Santiago Vera Anaya](https://github.com/dVera17)
