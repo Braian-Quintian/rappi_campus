@@ -35,7 +35,7 @@
 
 - Recepción y Calificación: Los usuarios reciben su pedido, pueden calificar la experiencia y proporcionar comentarios.
 
-`RappiFood ofrece comodidad al combinar tecnología con entregas directas, brindando a los usuarios la posibilidad de acceder a una variedad de alimentos y productos desde cualquier lugar.`
+**RappiFood ofrece comodidad al combinar tecnología con entregas directas, brindando a los usuarios la posibilidad de acceder a una variedad de alimentos y productos desde cualquier lugar.**
 
 ![rappi-food](/assets/img/rappi-food.png)
 
@@ -280,5 +280,5 @@ Bibliografía:
 - [Notion, qué es y cómo funciona - El Grupo Informático](https://www.elgrupoinformatico.com/tutoriales/notion-que-como-funciona-t77621.html)
 
 ## Autores
-- ![Braian Alberto Quintian Romero](https://github.com/Braian-Quintian)
-- ![Daniel Santiago Vera Anaya](https://github.com/dVera17)
+- [Braian Alberto Quintian Romero](https://github.com/Braian-Quintian)
+- [Daniel Santiago Vera Anaya](https://github.com/dVera17)
