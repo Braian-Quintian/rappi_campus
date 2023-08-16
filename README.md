@@ -37,7 +37,7 @@
 
 **RappiFood ofrece comodidad al combinar tecnología con entregas directas, brindando a los usuarios la posibilidad de acceder a una variedad de alimentos y productos desde cualquier lugar.**
 
-![rappi-food](/assets/img/rappi-food.png)
+![rappi-food](/assets/img/rappi-food.jpeg)
 
 #### RappiPay
 RappiPay es un servicio de pagos y transferencias dentro de la aplicación Rappi. Aquí te presento un resumen de cómo funciona:
@@ -84,7 +84,7 @@ RappiTravel simplifica la planificación y reserva de viajes al centralizar esta
 ### ¿Cómo funciona rappi?
 Rappi es una aplicación móvil que ofrece una variedad de servicios a los usuarios, incluyendo entregas de alimentos, compras de supermercado, pagos y transferencias, y reservas de viajes. La aplicación se puede descargar en dispositivos iOS y Android, y los usuarios deben registrarse para acceder a los servicios.
 
-![como-funciona](/assets/img/como-funciona.jpg)
+![como-funciona](/assets/img/como-funciona.png)
 
 **Exploración de Servicios**: Accediendo a un catálogo de restaurantes o servicios, los usuarios encuentran útil una función de búsqueda para una navegación más efectiva. En muchas ocasiones, buscan establecimientos por nombre, ubicación o menú.
 
