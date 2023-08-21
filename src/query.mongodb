@@ -1,0 +1,50 @@
+use('db_rappi_campus');
+db.createCollection("cliente", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["dni", "nombre", "telefono", "email", "fecha_nac"],
+            properties: {
+                dni: { bsonType: "int", description: "'dni' debe ser un entero y es requerido" },
+                nombre: { bsonType: "string", description: "'nombre' debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
+                telefono: { bsonType: "string", description: "'telefono' solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
+                email: { bsonType: "string", description: "'email' debe ser una direccion de correo valido y es requerido" },
+                fecha_nac: { bsonType: "date", description: "'fecha_nac' debe ser una fecha valida y es requerida" },
+                genero: { enum: ['masculino', 'femenino'], description: "'genero' solo puede ser masculino o femenino" }
+            }
+        }
+    }
+});
+
+db.createCollection("restaurante", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["nit", "nombre", "direccion", "telefono", "categoria"],
+            properties: {
+                nit: { bsonType: "int", description: "'nit' debe ser un entero y es requerido" },
+                nombre: { bsonType: "string", description: "'nombre' debe ser un string y es requerido" },
+                direccion: { bsonType: "string", description: "'direccion' es requerido" },
+                telefono: { bsonType: "string", description: "'telefono' solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
+                categoria: { enum: ['tematico', 'fast_food', 'buffet', 'gourmet', 'familiar'], description: "'Esa categoria no está disponible'" }
+            }
+        }
+    }
+});
+
+db.createCollection("empleados", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: [],
+            properties: {
+                dni: { bsonType: "int", description: "'dni' debe ser un entero y es requerido" },
+                nombre: { bsonType: "string", description: "'nombre' debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
+                telefono: { bsonType: "string", description: "'telefono' solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
+                email: { bsonType: "string", description: "'email' debe ser una direccion de correo valido y es requerido" },
+                tipo: { enum: ['vendedor', 'gerente'], description: "'tipo' solo puede ser vendedor o gerente"}
+            }
+        }
+    }
+});
+
