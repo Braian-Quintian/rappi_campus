@@ -159,9 +159,96 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 **Cabe destacar que el proyecto está en constante desarrollo, por lo que se irán añadiendo más complementos a medida que el proyecto avance.**
 
 
+
+## Como está compuesta la base de datos del proyecto
+
+**Módulo clientes: - Santiago**
+
+- **cli_dni**
+- **cli_primerNombre**
+- **cli_segundoNombre**
+- **cli_primerApellido**
+- **cli_segundoApellido**
+- **cli_telefono**
+- **cli_email**
+- **cli_fecha_nac**
+- **cli_genero**
+
+**Módulo repartidores - Braian**
+
+- **rep_dni**
+- **rep_primerNombre**
+- **rep_segundoNombre**
+- **rep_primerApellido**
+- **rep_segundoApellido**
+- **rep_telefono**
+- **rep_email**
+- **rep_fecha_nac**
+- **rep_genero**
+- **rep_codigo_vehiculo**
+
+**Módulo vehículos - Braian**
+
+- **veh_codigo**
+- **veh_marca**
+- **veh_modelo**
+- **veh_placa**
+- **veh_color**
+- **veh_tipo**
+
+**Módulo restaurante - Santiago**
+
+- **res_nit**
+- **res_nombre**
+- **res_direccion**
+- **res_telefono**
+- **res_categoria**
+
+**Módulo producto - Braian**
+
+- **pro_id**
+- **pro_nombre**
+- **pro_precio**
+- **pro_descripcion**
+- **pro_categoria**
+- **pro_restaurante**
+- **pro_imagen**
+
+**Módulo empleados - Santiago**
+
+- **emp_dni**
+- **emp_primerNombre**
+- **emp_segundoNombre**
+- **emp_primerApellido**
+- **emp_segundoApellido**
+- **emp_telefono**
+- **emp_email**
+- **emp_fecha_nac**
+- **emp_genero**
+- **emp_tipo**
+
+**Módulo Pedidos - Braian y Santiago**
+
+- **ped_id**
+- **ped_cliente**
+- **ped_restaurante**
+- **ped_estado**
+- **ped_fecha**
+- **ped_hora**
+- **ped_direccion**
+- **ped_repartidor**
+- **ped_pago**
+
+**Módulo Detalles Pedido - Braian**
+
+- **det_ped_id**
+- **det_ped_pedido**
+- **det_ped_producto**
+- **det_ped_cantidad**
+
+
+
 ------
-
-
 
 
 
