@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --quiet server/server.js",
-    "install": "npm i -E express express-rate-limit express-routes-versioning typescript class-transformer class-validator jose mongodb dotenv passport passport-http-bearer",
+    "install": "npm i -E express express-validator express-rate-limit express-routes-versioning typescript class-transformer class-validator jose mongodb dotenv passport passport-http-bearer",
     "install-dev": "npm i -D nodemon"
   },
   "keywords": [],
