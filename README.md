@@ -373,6 +373,16 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
   `Observacion`: Para el enpoint de `/login` tienes 3 intentos, después de eso tendrás que esperar una hora para volver a intentarlo.
 
 # Endpoints
+
+**Obtener la informacion de los repartidores**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/repartidores`
+
+  ![repartidores](/assets/img/GET-repartidoresV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los repartidores registrados en la base de datos
+
 ------
 
 
