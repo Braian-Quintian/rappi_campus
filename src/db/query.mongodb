@@ -13,6 +13,7 @@ db.createCollection("clientes", {
                 cli_segundoApellido: { bsonType: "string", description: "Segundo apellido debe ser un string", pattern: "^[A-Za-z ]+$" },
                 cli_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 cli_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
+                cli_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
                 cli_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 cli_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" }
             }
@@ -35,6 +36,8 @@ db.createCollection("repartidores",{
                 rep_segundoApellido: { bsonType: "string", description: "Segundo apellido debe ser un string", pattern: "^[A-Za-z ]+$" },
                 rep_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 rep_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
+                rep_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
+                rep_estado: { enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo"},
                 rep_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 rep_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
                 rep_codigo_vehiculo: { bsonType: "int", description: "Codigo de vehiculo debe ser un string y es requerido", pattern: "^[A-Za-z0-9]+$" },
@@ -125,6 +128,7 @@ db.createCollection("empleados", {
                 emp_segundoApellido: { bsonType: "string", description: "Segundo apellido debe ser un string", pattern: "^[A-Za-z ]+$" },
                 emp_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 emp_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
+                emp_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
                 emp_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 emp_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
                 emp_tipo: { enum: ['Vdo', 'Grte', 'Admin'], description: "Tipo de empleado solo puede ser vendedor o gerente" }

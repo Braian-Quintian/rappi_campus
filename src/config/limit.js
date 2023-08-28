@@ -6,7 +6,7 @@ export let limitLogin = ()=>{
         max: 3,
         standardHeaders: true, 
         legacyHeaders: false, 
-        skip: (req,res)=>{if(req.headers["content-length"]>30){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
+        skip: (req,res)=>{if(req.headers["content-length"]>100){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
                 return true;
             }
         }, 
