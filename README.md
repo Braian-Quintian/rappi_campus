@@ -258,7 +258,7 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
   `Recuerda que la informacion solitada la debes ingresar entre las "" correspondientes`
 
-    ![env](/assets/img/configuracion-env.png)
+  ![env](/assets/img/configuracion-env.png)
 
 5. Abre una terminal
 
