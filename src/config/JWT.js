@@ -19,10 +19,10 @@ const createToken = async (req, res, next) => {
         let collectionEntry;
         switch (acceptVersion) {
             case "1.0.0":
-                collectionEntry = "repartidores";
+                collectionEntry = "clientes";
                 break;
             case "2.0.0":
-                collectionEntry = "clientes";
+                collectionEntry = "repartidores";
                 break;
             case "3.0.0":
                 collectionEntry = "empleados";
