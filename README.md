@@ -380,7 +380,7 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
   - Metodo: `GET`
   - URL: `http://localhost:5050/repartidores`
 
-  ![repartidores](/assets/img/GET-repartidoresV1.png)
+  ![repartidores](/assets/img/GET-repartidorV1.png)
 
 Está solicitud se utiliza para obtener la informacion sobre todos los repartidores registrados en la base de datos
 
