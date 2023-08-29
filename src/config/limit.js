@@ -39,3 +39,18 @@ export let limitRepartidoresPOST = ()=> {
         }
     })      
 }
+
+export const limitRepartidoresPUT = ()=> {
+    return rateLimit({
+        windowMs: 60 * 1000,
+        max: 1,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
+                return true;
+            }
+        }, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })      
+}
