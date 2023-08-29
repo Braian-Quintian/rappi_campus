@@ -363,7 +363,7 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
   `NOTA`: El token solo servira para la collection que tienes acceso
 
   `NOTA`: Si presentas algun error al momento de solicitar el token, revisa que hayas ingresado correctamente los datos, si el error persiste, revisa que estes escribriendo correctamente la palabra `Bearer`
-  
+
 
 - **LIMITES DE PETICION DE ENPOINTS**
   
@@ -375,7 +375,9 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 # Endpoints
 ## Repartidores
 
-**Obtener la xinformacion de los repartidores**
+**Obtener la informacion de los repartidores**
+
+> Solo los administradores tienen acceso
 
   - Metodo: `GET`
   - URL: `http://localhost:5050/repartidores`
@@ -387,6 +389,8 @@ Está solicitud se utiliza para obtener la informacion sobre todos los repartido
 
 **Obtener informacion de un repartidor en especifico**
 
+> Los empleados y los administradores tienen acceso
+
   - Metodo: `GET`
   - URL: `http://localhost:5050/repartidores/:dni`
   - Version: `1.0.1`
@@ -394,6 +398,18 @@ Está solicitud se utiliza para obtener la informacion sobre todos los repartido
   ![repartidores](/assets/img/GET-repartidorV1Id.png)
 
 Está solicitud se utiliza para obtener la informacion sobre un repartidor en especifico, para ello se debe enviar el DNI del repartidor por la url
+
+**Registrar un repartidor**
+
+> Los repartidores y los administradores tienen acceso
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/repartidores`
+  - Version: `1.0.0`
+
+  ![repartidores](/assets/img/POST-repartidores.png)
+
+Está solicitud se utiliza para registrar un repartidor en la base de datos, para ello se debe enviar la informacion del repartidor por el body
 
 ------
 
