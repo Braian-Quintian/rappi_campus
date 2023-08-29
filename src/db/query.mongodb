@@ -67,7 +67,7 @@ db.repartidores.insertOne({
     rep_estado: "Activo",
     rep_fecha_nac: new Date("1999-01-01"),
     rep_genero: "Masculino",
-    rep_codigo_vehiculo: 123456789,
+    rep_codigo_vehiculo: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
     rep_permisos: {
         "/repartidores": ["*"]
     }
