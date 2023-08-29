@@ -90,3 +90,26 @@ export const repartidoresV1_1 = async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+export const repartidoresV1_11 = async (req, res, next) => {
+  if (!req.rateLimit) return;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  try {
+    const repartidorId = parseInt(req.params.id);
+    const updatedData = {
+      rep_telefono: req.body["telefono-repartidor"],
+      rep_estado: req.body["estado-repartidor"],
+    };
+    const result = await db.collection('repartidores').updateOne(
+      { rep_dni: repartidorId },
+      { $set: updatedData }
+    );
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: 'No se encontró el repartidor' });
+    }
+    res.status(200).json({ message: 'Repartidor actualizado exitosamente' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
