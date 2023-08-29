@@ -81,16 +81,16 @@ export const repartidoresV1_1 = async (req, res, next) => {
       rep_genero: req.body["genero-repartidor"],
       rep_codigo_vehiculo: resultVehiculo.insertedId,
       rep_permisos: {
-        "/repartidores": ["1.0.2"]
+        "/repartidores": ["1.0.2"],
+        "/repartidores": ["1.0.3"],
       }
-    }
+    };
     await db.collection('repartidores').insertOne(dataSend);
     res.status(200).json({ message: 'El repartidor ha sido creado exitosamente.' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
-
+};
 export const repartidoresV1_11 = async (req, res, next) => {
   if (!req.rateLimit) return;
   const errors = validationResult(req);
