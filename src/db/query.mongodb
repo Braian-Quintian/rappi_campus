@@ -3,7 +3,7 @@ db.createCollection("clientes", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["cli_dni", "cli_primerNombre","cli_primerApellido", "cli_telefono", "cli_email", "cli_fecha_nac","cli_genero"],
+            required: ["cli_dni", "cli_primerNombre", "cli_primerApellido", "cli_telefono", "cli_email", "cli_fecha_nac", "cli_genero"],
             additionalProperties: true,
             properties: {
                 cli_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
@@ -22,11 +22,11 @@ db.createCollection("clientes", {
 });
 
 use('db_rappi_campus');
-db.createCollection("repartidores",{
+db.createCollection("repartidores", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["rep_dni", "rep_primerNombre","rep_primerApellido", "rep_telefono", "rep_email", "rep_fecha_nac","rep_genero", "rep_codigo_vehiculo","rep_permisos"],
+            required: ["rep_dni", "rep_primerNombre", "rep_primerApellido", "rep_telefono", "rep_email", "rep_fecha_nac", "rep_genero", "rep_codigo_vehiculo", "rep_permisos"],
             additionalProperties: true,
             properties: {
                 rep_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
@@ -37,16 +37,16 @@ db.createCollection("repartidores",{
                 rep_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 rep_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
                 rep_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
-                rep_estado: { enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo"},
+                rep_estado: { enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo" },
                 rep_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 rep_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
                 rep_codigo_vehiculo: { bsonType: "int", description: "Codigo de vehiculo debe ser un string y es requerido", pattern: "^[A-Za-z0-9]+$" },
                 rep_permisos: {
                     bsonType: 'object',
                     description: "Ingrese los permisos",
-                    required:["/repartidores"],
-                    additionalProperties:{
-                       bsonType: "array",
+                    required: ["/repartidores"],
+                    additionalProperties: {
+                        bsonType: "array",
                         description: "Ingrese la version autorizada",
                     }
                 }
@@ -57,11 +57,11 @@ db.createCollection("repartidores",{
 });
 
 use('db_rappi_campus');
-db.createCollection("vehiculos",{
+db.createCollection("vehiculos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["veh_codigo", "veh_marca","veh_modelo", "veh_placa", "veh_color", "veh_tipo"],
+            required: ["veh_codigo", "veh_marca", "veh_modelo", "veh_placa", "veh_color", "veh_tipo"],
             additionalProperties: true,
             properties: {
                 veh_codigo: { bsonType: "int", description: "Codigo debe ser un entero y es requerido" },
@@ -80,7 +80,7 @@ db.createCollection("restaurante", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["res_nit", "res_nombre", "res_direccion", "res_telefono", "res_categoria", "res_tipoComida"],
+            required: ["res_nit", "res_nombre", "res_direccion", "res_telefono", "res_categoria"],
             additionalProperties: true,
             properties: {
                 res_nit: { bsonType: "int", description: "El NIT debe ser un entero y es requerido" },
@@ -98,10 +98,10 @@ db.createCollection("productos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["pro_id","pro_nombre", "pro_precio", "pro_descripcion", "pro_categoria", "pro_restaurante"],
+            required: ["pro_id", "pro_nombre", "pro_precio", "pro_descripcion", "pro_categoria", "pro_restaurante"],
             additionalProperties: true,
             properties: {
-                pro_id:{ bsonType: "int", description: "El id del producto debe ser un entero y es requerido"},
+                pro_id: { bsonType: "int", description: "El id del producto debe ser un entero y es requerido" },
                 pro_nombre: { bsonType: "string", description: "El nombre del producto debe ser un string y es requerido" },
                 pro_precio: { bsonType: "int", description: "El precio del producto debe ser un entero y es requerido" },
                 pro_descripcion: { bsonType: "string", description: "La descripcion del producto debe ser un string y es requerido" },
@@ -118,7 +118,7 @@ db.createCollection("empleados", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["emp_dni", "emp_primerNombre","emp_primerApellido", "emp_telefono", "emp_email", "emp_fecha_nac","emp_genero", "emp_tipo"],
+            required: ["emp_dni", "emp_primerNombre", "emp_primerApellido", "emp_telefono", "emp_email", "emp_fecha_nac", "emp_genero", "emp_tipo"],
             additionalProperties: true,
             properties: {
                 emp_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
