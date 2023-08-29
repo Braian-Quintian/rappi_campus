@@ -14,7 +14,7 @@ export let limitLogin = ()=>{
         }
     })    
 }
-export let limitRepartidores = ()=>{
+export let limitRepartidoresGET = ()=>{
     return rateLimit({
         windowMs: 30 * 1000,
         max: 5,
@@ -23,4 +23,19 @@ export let limitRepartidores = ()=>{
         message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
         }
     })
+}
+
+export let limitRepartidoresPOST = ()=> {
+    return rateLimit({
+        windowMs: 60 * 1000,
+        max: 3,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
+                return true;
+            }
+        }, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })      
 }
