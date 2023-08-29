@@ -34,3 +34,12 @@ export const repartidoresDtoPost = [
     .isIn(['Motos', 'Carros', 'Bicicletas', 'otro']).withMessage('El tipo de vehículo debe ser Motos, Carros, Bicicletas u otro')
 
 ]
+
+export const repartidoresDtoPut = [
+    param('id').notEmpty().isNumeric().withMessage('El id debe ser un numero')
+    .matches(/^[0-9]+$/).withMessage('El id debe ser un numero'),
+    body('telefono-repartidor').notEmpty().isNumeric().withMessage('El dni debe ser un numero')
+    .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero'),
+    body('estado-repartidor').notEmpty().withMessage('El estado es obligatorio')
+    .isIn(['Activo', 'Inactivo']).withMessage('El estado debe ser Activo o Inactivo'),
+]
