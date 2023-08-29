@@ -411,6 +411,16 @@ Está solicitud se utiliza para obtener la informacion sobre un repartidor en es
 
 Está solicitud se utiliza para registrar un repartidor en la base de datos, para ello se debe enviar la informacion del repartidor por el body
 
+**Actualizar la informacion de un repartidor**
+
+> Los repartidores y los administradores tienen acceso
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/repartidores/:dni`
+  - Version: `1.0.0`
+
+  ![repartidores](/assets/img/PUT-repartidores.png)
+
 ------
 
 
