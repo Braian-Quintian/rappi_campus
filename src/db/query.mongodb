@@ -40,7 +40,7 @@ db.createCollection("repartidores", {
                 rep_estado: { enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo" },
                 rep_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 rep_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
-                rep_codigo_vehiculo: { bsonType: "int", description: "Codigo de vehiculo debe ser un string y es requerido", pattern: "^[A-Za-z0-9]+$" },
+                rep_codigo_vehiculo: { bsonType: "objectId" },
                 rep_permisos: {
                     bsonType: 'object',
                     description: "Ingrese los permisos",
@@ -56,20 +56,36 @@ db.createCollection("repartidores", {
     }
 });
 
+use('db_rappi_campus')
+db.repartidores.insertOne({
+    rep_dni: 123456789,
+    rep_primerNombre: "Juan",
+    rep_primerApellido: "Perez",
+    rep_telefono: "123456789",
+    rep_email: "bquintianromero@gmail.com",
+    rep_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
+    rep_estado: "Activo",
+    rep_fecha_nac: new Date("1999-01-01"),
+    rep_genero: "Masculino",
+    rep_codigo_vehiculo: 123456789,
+    rep_permisos: {
+        "/repartidores": ["*"]
+    }
+})
+
 use('db_rappi_campus');
 db.createCollection("vehiculos", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["veh_codigo", "veh_marca", "veh_modelo", "veh_placa", "veh_color", "veh_tipo"],
+            required: ["veh_marca", "veh_modelo", "veh_placa", "veh_color", "veh_tipo"],
             additionalProperties: true,
             properties: {
-                veh_codigo: { bsonType: "int", description: "Codigo debe ser un entero y es requerido" },
                 veh_marca: { bsonType: "string", description: "Marca debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
-                veh_modelo: { bsonType: "string", description: "Modelo debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
-                veh_placa: { bsonType: "string", description: "Placa debe ser un string y es requerido", pattern: "^[A-Za-z0-9]+$" },
+                veh_modelo: { bsonType: "string", description: "Modelo debe ser un string y es requerido", pattern: "^[A-Za-z0-9 ]+$" },
+                veh_placa: { bsonType: "string", description: "Placa debe ser un string y es requerido", pattern: "^[A-Za-z0-9 ]+$" },
                 veh_color: { bsonType: "string", description: "Color debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
-                veh_tipo: { enum: ['Motocicleta', 'Bicicleta'], description: "Tipo solo puede ser Motocicleta o Bicicleta" }
+                veh_tipo: { enum: ['Motos', 'Carros', 'Bicicletas', 'otro'], description: "Tipo solo puede ser Motocicleta o Bicicleta" }
             }
         }
     }
