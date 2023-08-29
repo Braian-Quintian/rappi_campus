@@ -1,7 +1,7 @@
 import routesVersioning from 'express-routes-versioning';
 import { Router } from 'express';
 import { limitRepartidoresGET,limitRepartidoresPOST } from '../config/limit.js';
-import {repartidoresDtoId,repartidoresDtoPost } from '../DTO/repartidores.dto.js';
+import {repartidoresDtoId,repartidoresDtoPost } from '../DTO/repartidores.js';
 import { repartidoresV1, repartidoresV1Id, repartidoresV1_1} from '../versiones/v1/repartidores.js'
 
 const repartidoresRoutes = Router();
