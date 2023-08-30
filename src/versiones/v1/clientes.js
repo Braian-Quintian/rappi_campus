@@ -73,7 +73,7 @@ export const clientesV1_1 = async (req, res) => {
                 "/detalle": ["1.0.1"]
             }
         };
-        await db.collection('clients').insertOne(dataSend);
+        await db.collection('clientes').insertOne(dataSend);
         res.status(200).json({ message: 'El cliente ha sido creado exitosamente.' });
     } catch (error) {
         res.status(500).json({ message: error.message });
