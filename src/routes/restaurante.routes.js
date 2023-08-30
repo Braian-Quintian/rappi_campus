@@ -1,23 +1,26 @@
 import { Router } from "express";
 import routesVersioning from 'express-routes-versioning';
-import { validateDTORestaurante } from "../DTO/restaurante.js";
-import { deleteRestaurante, getRestautantes, postRestaurante, putRestautantes } from "../versiones/v4/restaurante.js";
+import { limitRestauranteGET, limitRestaurantePOST, limitRestaurantePUT } from "../config/limit.js";
+import { restaurantesDtoId,restaurantesDtoPost,restaurantesDtoPut } from "../DTO/restaurante.js";
+import { restaurantesV1,restaurantesV1Id, restaurantesV1_1, restaurantesV1_11 } from "../versiones/v4/restaurante.js";
 const restauranteRouter = Router();
 const version = routesVersioning();
-restauranteRouter.post('/', validateDTORestaurante, version({
-    "4.0.0": postRestaurante
-}))
 
-restauranteRouter.get('/', version({
-    "4.0.0": getRestautantes
-}))
+restauranteRouter.get('/', limitRestauranteGET(),version({
+    "1.0.0": restaurantesV1
+}));
 
-restauranteRouter.put('/:nit', version({
-    "4.0.0": putRestautantes
-}))
+restauranteRouter.get('/:nit', restaurantesDtoId, limitRestauranteGET(), version({
+    "1.0.1": restaurantesV1Id
+}));
 
-restauranteRouter.delete('/:nit', version({
-    "4.0.0": deleteRestaurante
-}))
+restauranteRouter.post('/', restaurantesDtoPost,limitRestaurantePOST(), version({
+    "1.0.2": restaurantesV1_1
+}));
+
+restauranteRouter.put('/:nit',restaurantesDtoPut,limitRestaurantePUT(), version({
+    "1.0.3": restaurantesV1_11
+}));
+
 
 export default restauranteRouter;
