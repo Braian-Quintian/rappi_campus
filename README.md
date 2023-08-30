@@ -399,6 +399,40 @@ Está solicitud se utiliza para obtener la informacion sobre todos los clientes 
 
 Está solicitud se utiliza para obtener la informacion sobre un cliente en especifico, para ello se debe enviar el DNI del repartidor por la url
 
+# Registro de Clientes
+
+Esta guía describe cómo registrar un nuevo cliente en el sistema. Tanto los clientes como los administradores tienen acceso a esta funcionalidad.
+
+## Detalles de la API
+
+- Método: `POST`
+- URL: `http://localhost:5050/clientes`
+- Versión: `1.0.2`
+
+## Ejemplo de Datos JSON
+
+```json
+{
+  "dni-cliente": "123456789",
+  "nombre-cliente": "Nombre",
+  "apellido-cliente": "Apellido",
+  "telefono-cliente": "1234567890",
+  "correo-cliente": "correo@example.com",
+  "contraseña-cliente": "contraseña123",
+  "cumpleaños-cliente": "1990-01-01",
+  "genero-cliente": "Masculino"
+}
+```
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/POST-clientesV1_1.png)
+
+**Notas**
+- Todos los campos son obligatorios a menos que se indique lo contrario.
+- El campo "dni-cliente" debe ser único para cada cliente.
+- Asegúrate de proporcionar el formato correcto para el campo "cumpleaños-cliente" (AAAA-MM-DD).
 ## Repartidores
 
 **Obtener la informacion de los repartidores**
