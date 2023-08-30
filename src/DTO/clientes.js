@@ -1,8 +1,8 @@
 import { body, param } from "express-validator";
 
 export const clientesDtoId = [
-    param('id').notEmpty().isNumeric().not().isString().withMessage('El id es requerido')
-    .matches(/^[0-9]+$/).withMessage('El id debe ser un numero')
+    param('dni').notEmpty().isNumeric().withMessage('El dni es requerido')
+    .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero')
 ]
 
 export const clientesDtoPost = [
