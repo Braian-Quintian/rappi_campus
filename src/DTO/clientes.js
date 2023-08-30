@@ -1,13 +1,24 @@
-import { check } from "express-validator";
+import { body, param } from "express-validator";
 
-export const validateDTOcliente = [
-    check('cli_dni').notEmpty().isNumeric().not().isString().withMessage('dni requerido. debe ser un número'),
-    check('cli_primerNombre').notEmpty().isString().withMessage('primerNombre es requerido y debe ser un string'),
-    check('cli_segundoNombre').notEmpty().optional().isString().withMessage('segundoNombre debe ser un string'),
-    check('cli_primerApellido').notEmpty().isString().withMessage('primerApellido es requerido y debe ser un string'),
-    check('cli_segundoApellido').notEmpty().optional().isString().withMessage('segundoApellido debe ser un string'),
-    check('cli_telefono').notEmpty().isNumeric().withMessage('telefono es requerido y solo puede contener numeros'),
-    check('cli_email').notEmpty().isEmail().withMessage('email es requerido y debe ser una direccion de correo valido'),
-    check('cli_fecha_nac').notEmpty().isISO8601().withMessage('fecha_nac es requerido y debe ser una fecha valida'),
-    check('cli_genero').notEmpty().isString().withMessage('genero es requerido y debe ser [`Masculino`, `Femenino`, `Otro`]')
+export const clientesDtoId = [
+    param('id').notEmpty().isNumeric().not().isString().withMessage('El id es requerido')
+    .matches(/^[0-9]+$/).withMessage('El id debe ser un numero')
+]
+
+export const clientesDtoPost = [
+    body('dni-cliente').notEmpty().isNumeric().withMessage('El dni es requerido')
+    .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero'),
+    body('nombre-cliente').notEmpty().isString().withMessage('El nombre es requerido')
+    .matches(/^[a-zA-Z ]+$/).withMessage('El nombre debe ser un string'),
+    body('apellido-cliente').notEmpty().isString().withMessage('El apellido es requerido')
+    .matches(/^[a-zA-Z ]+$/).withMessage('El apellido debe ser un string'),
+    body('telefono-cliente').notEmpty().isNumeric().withMessage('El telefono es requerido')
+    .matches(/^[0-9]+$/).withMessage('El telefono debe ser un numero'),
+    body('correo-cliente').notEmpty().isEmail().withMessage('El correo debe ser un email y es requerido'),
+    body('contraseña-cliente').notEmpty().isString().withMessage('La contraseña es requerida')
+    .matches(/^[a-zA-Z0-9]+$/).withMessage('La contraseña debe ser un string'),
+    body('cumpleaños-cliente').notEmpty().withMessage('El cumpleaños es requerido')
+    .matches(/^\d{4}-\d{2}-\d{2}$/).withMessage('El cumpleaños debe tener el formato YYYY-MM-DD'),
+    body('genero-cliente').notEmpty().withMessage('El género es obligatorio')
+    .isIn(['Masculino', 'Femenino', 'Otro']).withMessage('El género debe ser Masculino, Femenino u Otro'),
 ]
