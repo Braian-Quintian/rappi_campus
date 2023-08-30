@@ -32,7 +32,7 @@ export const clientesV1Id = async (req, res) => {
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     try {
         const result = await db.collection('clientes').findOne(
-            { cli_dni: parseInt(req.params.id) },
+            { cli_dni: parseInt(req.params.dni) },
             {
                 projection: {
                     _id: 0,
