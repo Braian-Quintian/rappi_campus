@@ -22,3 +22,12 @@ export const clientesDtoPost = [
     body('genero-cliente').notEmpty().withMessage('El género es obligatorio')
     .isIn(['Masculino', 'Femenino', 'Otro']).withMessage('El género debe ser Masculino, Femenino u Otro'),
 ]
+
+export const clientesDtoPut = [
+    param('id').notEmpty().isNumeric().withMessage('El id es requerido')
+    .matches(/^[0-9]+$/).withMessage('El id debe ser un numero'),
+    body('telefono-cliente').notEmpty().isNumeric().withMessage('El dni es requerido')
+    .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero'),
+    body('estado-cliente').notEmpty().withMessage('El estado es obligatorio')
+    .isIn(['Activo', 'Inactivo']).withMessage('El estado debe ser Activo o Inactivo'),
+]
