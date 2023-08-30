@@ -1,5 +1,9 @@
 import { check } from "express-validator";
 
+export const empleadosDtoId = [
+    
+]
+
 export const validateDTOEmpleado = [
     check('dni').notEmpty().isNumeric().not().isString().withMessage('emp_dni es requerido y debe ser un número entero'),
     check('primerNombre').notEmpty().isString().withMessage('primerNombre es requerido y debe ser un string'),
