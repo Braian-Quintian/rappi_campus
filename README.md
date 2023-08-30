@@ -431,6 +431,7 @@ Está solicitud se utiliza para obtener la informacion sobre un cliente en espec
   "genero-cliente": "Masculino"
 }
 ```
+
 ***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
 
 **Capturas de Pantalla**
@@ -439,8 +440,41 @@ Está solicitud se utiliza para obtener la informacion sobre un cliente en espec
 
 **Notas**
 - Todos los campos son obligatorios a menos que se indique lo contrario.
-- El campo "dni-cliente" debe ser único para cada cliente.
+- El campo "dni-cliente" debe ser único para cada cliente, por el momento se puede repetir el dni, en la proxima version del api se corregirá eso.
 - Asegúrate de proporcionar el formato correcto para el campo "cumpleaños-cliente" (AAAA-MM-DD).
+
+
+### Actualizar los datos del cliente:
+
+> Solo los clientes y los administradores tienen acceso
+
+**Detalles de la API**
+
+- Método: `PUT`
+- URL: `http://localhost:5050/clientes/:dni`
+- Versión: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "telefono-cliente": "324156216",
+  "estado-cliente": "Inactivo"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/PUT-clientesV1_11.png)
+
+**Notas**
+- Solo se pueden actualizar los campos que se indica
+- En una siguiente version del api se podrán actualizar más datos.
+
+`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
+
 ## Repartidores
 
 **Obtener la informacion de los repartidores**
