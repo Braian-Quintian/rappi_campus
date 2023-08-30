@@ -24,8 +24,8 @@ export const clientesDtoPost = [
 ]
 
 export const clientesDtoPut = [
-    param('id').notEmpty().isNumeric().withMessage('El id es requerido')
-    .matches(/^[0-9]+$/).withMessage('El id debe ser un numero'),
+    param('dni').notEmpty().isNumeric().withMessage('El dni es requerido')
+    .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero'),
     body('telefono-cliente').notEmpty().isNumeric().withMessage('El dni es requerido')
     .matches(/^[0-9]+$/).withMessage('El dni debe ser un numero'),
     body('estado-cliente').notEmpty().withMessage('El estado es obligatorio')

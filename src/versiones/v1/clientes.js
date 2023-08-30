@@ -85,7 +85,7 @@ export const clientesv1_11 = async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     try {
-        const clienteId = parseInt(req.params.id);
+        const clienteId = parseInt(req.params.dni);
         const updatedData = {
             cli_telefono: req.body["telefono-cliente"],
             cli_estado: req.body["estado-cliente"],
