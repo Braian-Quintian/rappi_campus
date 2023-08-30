@@ -136,3 +136,14 @@ export const limitRestaurantePUT = ()=> {
         }
     })
 }
+
+export const limitEmpleadosGET = ()=> {
+    return rateLimit({
+        windowMs: 30 * 1000,
+        max: 5,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })
+}
