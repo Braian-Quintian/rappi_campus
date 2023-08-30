@@ -1,7 +1,7 @@
 import { validationResult } from 'express-validator';
 import { connect } from '../../connection/connection.js'
-const db = await connect();
 import bcrypt from 'bcrypt';
+const db = await connect();
 
 export const repartidoresV1 = async (req, res, next) => {
   if (!req.rateLimit) return;
@@ -25,7 +25,7 @@ export const repartidoresV1 = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
-}
+};
 
 export const repartidoresV1Id = async (req, res, next) => {
   if (!req.rateLimit) return;
@@ -91,6 +91,7 @@ export const repartidoresV1_1 = async (req, res, next) => {
     res.status(500).json({ message: error.message });
   }
 };
+
 export const repartidoresV1_11 = async (req, res, next) => {
   if (!req.rateLimit) return;
   const errors = validationResult(req);
