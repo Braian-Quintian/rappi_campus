@@ -1,9 +1,27 @@
 import { connect } from "../../connection/connection.js";
 import { validationResult } from "express-validator";
 const db = await connect();
-const empleados = db.collection('empleados');
 
-export const postEmpleado = async (req, res) => {
+export const empleadosV1 = async (req, res) => {
+    if (!req.rateLimit) return;
+    try {
+        let result = await db.collection('empleados').aggregate([
+            {
+                $project: {
+                    _id: 0
+                }
+            }
+        ]);
+        res.status(200).json(result);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
+export const empleadosV1Id = async (req, res) => {
+
+}
+export const empleadosV1_1 = async (req, res) => {
     try {
         const errors = validationResult(req);
         if (!errors.isEmpty()) return res.status(400).json(errors);
@@ -21,15 +39,6 @@ export const postEmpleado = async (req, res) => {
         };
 
         let result = await empleados.insertOne(empleadoData);
-        res.send(result);
-    } catch (error) {
-        res.send(error);
-    }
-}
-
-export const getEmpleados = async (req, res) => {
-    try {
-        let result = await empleados.find({}).toArray();
         res.send(result);
     } catch (error) {
         res.send(error);
