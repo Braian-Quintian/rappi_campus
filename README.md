@@ -519,7 +519,7 @@ Está solicitud se utiliza para obtener la informacion sobre un repartidor en es
 
   - Metodo: `POST`
   - URL: `http://localhost:5050/repartidores`
-  - Version: `1.0.0`
+  - Version: `1.0.2`
 
 **Ejemplo de Datos JSON:**
 
@@ -555,7 +555,7 @@ Está solicitud se utiliza para registrar un repartidor en la base de datos, par
 
   - Metodo: `PUT`
   - URL: `http://localhost:5050/repartidores/:dni`
-  - Version: `1.0.0`
+  - Version: `1.0.3`
 
   ![repartidores](/assets/img/PUT-repartidores.png)
 
