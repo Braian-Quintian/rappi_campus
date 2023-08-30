@@ -10,7 +10,7 @@ clientesRouter.get('/', limitClientesGET(), version({
     "1.0.0": clientesV1
 }))
 
-clientesRouter.get('/:id', clientesDtoId, limitClientesGET(), version({
+clientesRouter.get('/:dni', clientesDtoId, limitClientesGET(), version({
     "1.0.1": clientesV1Id
 }))
 
