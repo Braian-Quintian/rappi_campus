@@ -375,41 +375,49 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 # Endpoints
 ## Clientes
 
-**Obtener la informacion de los clientes**
+### Obtener la informacion de los clientes
 
 >Solo los administradores tienen acceso
+
+**Detalles de la API**
 
   - Metodo: `GET`
   - URL: `http://localhost:5050/clientes`
   - Version: `1.0.0`
 
+**Capturas de Pantalla**
+
   ![clientes](/assets/img/GET-clientesV1.png)
 
 Está solicitud se utiliza para obtener la informacion sobre todos los clientes registrados en la base de datos
 
-**Obtener la informacion de un cliente en especifico**
+### Obtener la informacion de un cliente en especifico
 
 > Los empleados y los administradores tienen acceso
+
+**Detalles de la API**
 
   - Metodo: `GET`
   - URL: `http://localhost:5050/clientes/:dni`
   - Version: `1.0.1`
 
+**Capturas de Pantalla**
+
   ![clientes](/assets/img/GET-clientesV1Id.png)
 
 Está solicitud se utiliza para obtener la informacion sobre un cliente en especifico, para ello se debe enviar el DNI del repartidor por la url
 
-# Registro de Clientes
+### Registro de Clientes
 
-Esta guía describe cómo registrar un nuevo cliente en el sistema. Tanto los clientes como los administradores tienen acceso a esta funcionalidad.
+> Solo  los clientes y los administradores tienen acceso
 
-## Detalles de la API
+**Detalles de la API**
 
 - Método: `POST`
 - URL: `http://localhost:5050/clientes`
 - Versión: `1.0.2`
 
-## Ejemplo de Datos JSON
+**Ejemplo de Datos JSON:**
 
 ```json
 {
