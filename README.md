@@ -580,6 +580,19 @@ Está solicitud se utiliza para registrar un repartidor en la base de datos, par
 
 Está solicitud se utiliza para obtener la informacion sobre todos los restaurantes registrados en la base de datos
 
+### Obtener la informacion de un restaurante en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/restaurantes/:nit`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/GET-restaurantesV1Id.png)
 
 ------
 
