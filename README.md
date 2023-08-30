@@ -373,6 +373,32 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
   `Observacion`: Para el enpoint de `/login` tienes 3 intentos, después de eso tendrás que esperar una hora para volver a intentarlo.
 
 # Endpoints
+## Clientes
+
+**Obtener la informacion de los clientes**
+
+>Solo los administradores tienen acceso
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/clientes`
+  - Version: `1.0.0`
+
+  ![clientes](/assets/img/GET-clientesV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los clientes registrados en la base de datos
+
+**Obtener la informacion de un cliente en especifico**
+
+> Los empleados y los administradores tienen acceso
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/clientes/:dni`
+  - Version: `1.0.1`
+
+  ![clientes](/assets/img/GET-clientesV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un cliente en especifico, para ello se debe enviar el DNI del repartidor por la url
+
 ## Repartidores
 
 **Obtener la informacion de los repartidores**
