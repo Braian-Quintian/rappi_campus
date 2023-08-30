@@ -537,7 +537,7 @@ Está solicitud se utiliza para obtener la informacion sobre un repartidor en es
   "vehiculo-modelo": "CBR500R",
   "vehiculo-placa": "ABC123",
   "vehiculo-color": "Rojo",
-  "tipo-vehiculo": "Motocicleta"
+  "tipo-vehiculo": "Motos"
 }
 ```
 
