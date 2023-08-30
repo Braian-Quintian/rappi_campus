@@ -377,7 +377,6 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
 `Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
 
----
 ### Obtener la informacion de los clientes
 
 >Solo los administradores tienen acceso
@@ -478,43 +477,79 @@ Está solicitud se utiliza para obtener la informacion sobre un cliente en espec
 
 ## Repartidores
 
-**Obtener la informacion de los repartidores**
+`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
+
+### Obtener la informacion de los repartidores
 
 > Solo los administradores tienen acceso
+
+**Detalles de la API**
 
   - Metodo: `GET`
   - URL: `http://localhost:5050/repartidores`
   - Version: `1.0.0`
+
+**Capturas de Pantalla**
 
   ![repartidores](/assets/img/GET-repartidorV1.png)
 
 Está solicitud se utiliza para obtener la informacion sobre todos los repartidores registrados en la base de datos
 
-**Obtener informacion de un repartidor en especifico**
+### Obtener informacion de un repartidor en especifico
 
 > Los empleados y los administradores tienen acceso
+
+**Detalles de la API**
 
   - Metodo: `GET`
   - URL: `http://localhost:5050/repartidores/:dni`
   - Version: `1.0.1`
 
+**Capturas de Pantalla**
+
   ![repartidores](/assets/img/GET-repartidorV1Id.png)
 
 Está solicitud se utiliza para obtener la informacion sobre un repartidor en especifico, para ello se debe enviar el DNI del repartidor por la url
 
-**Registrar un repartidor**
+### Registro de repartidor
 
 > Los repartidores y los administradores tienen acceso
+
+**Detalles de la API**
 
   - Metodo: `POST`
   - URL: `http://localhost:5050/repartidores`
   - Version: `1.0.0`
 
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "dni-repartidor": 1234567890,
+  "nombre-repartidor": "Juan Pérez",
+  "apellido-repartidor": "González",
+  "telefono-repartidor": "555-123-4567",
+  "correo-repartidor": "juan.perez@example.com",
+  "contraseña-repartidor": "secretpass123",
+  "cumpleaños-repartidor": "1995-08-15",
+  "genero-repartidor": "Masculino",
+  "vehiculo-marca": "Honda",
+  "vehiculo-modelo": "CBR500R",
+  "vehiculo-placa": "ABC123",
+  "vehiculo-color": "Rojo",
+  "tipo-vehiculo": "Motocicleta"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
   ![repartidores](/assets/img/POST-repartidores.png)
 
 Está solicitud se utiliza para registrar un repartidor en la base de datos, para ello se debe enviar la informacion del repartidor por el body
 
-**Actualizar la informacion de un repartidor**
+### Actualizar la informacion de un repartidor
 
 > Los repartidores y los administradores tienen acceso
 
