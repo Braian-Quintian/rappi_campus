@@ -375,6 +375,9 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 # Endpoints
 ## Clientes
 
+`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
+
+---
 ### Obtener la informacion de los clientes
 
 >Solo los administradores tienen acceso
@@ -472,8 +475,6 @@ Está solicitud se utiliza para obtener la informacion sobre un cliente en espec
 **Notas**
 - Solo se pueden actualizar los campos que se indica
 - En una siguiente version del api se podrán actualizar más datos.
-
-`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
 
 ## Repartidores
 
