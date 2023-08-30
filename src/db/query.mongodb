@@ -15,7 +15,16 @@ db.createCollection("clientes", {
                 cli_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
                 cli_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
                 cli_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
-                cli_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" }
+                cli_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
+                cli_permisos: {
+                    bsonType: 'object',
+                    description: "Ingrese los permisos",
+                    required: ["/clientes"],
+                    additionalProperties: {
+                        bsonType: "array",
+                        description: "Ingrese la version autorizada",
+                    }
+                }
             }
         }
     }
@@ -69,7 +78,26 @@ db.repartidores.insertOne({
     rep_genero: "Masculino",
     rep_codigo_vehiculo: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
     rep_permisos: {
-        "/repartidores": ["*"]
+        "/repartidores": ["*"],
+        "/clientes": ["*"],
+    }
+})
+
+use('db_rappi_campus')
+db.clientes.insertOne({
+    cli_dni: 123456789,
+    cli_primerNombre: "Juan",
+    cli_primerApellido: "Perez",
+    cli_telefono: "123456789",
+    cli_email: "bquintianromero@gmail.com",
+    cli_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
+    cli_estado: "Activo",
+    cli_fecha_nac: new Date("1999-01-01"),
+    cli_genero: "Masculino",
+    cli_codigo_vehiculo: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
+    cli_permisos: {
+        "/repartidores": ["*"],
+        "/clientes": ["*"],
     }
 })
 
