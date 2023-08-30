@@ -27,12 +27,6 @@ const createToken = async (req, res, next) => {
             case "3.0.0":
                 collectionEntry = "empleados";
                 break;
-            case "4.0.0":
-                collectionEntry = "restaurante";
-                break;
-            case "6.0.0":
-                collectionEntry = "empleados";
-                break;
             default:
                 return res.status(422).send({ message: "Version del api incorrecta" });
         }
