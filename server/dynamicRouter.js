@@ -1,7 +1,7 @@
 import { router as Repartidores } from '../src/middleware/repartidores.js';
-import { router as Clientes } from '../src/routes/clientes.routes.js';
-import { router as Restaurante } from '../src/routes/restaurante.routes.js';
-import { router as Empleados } from '../src/routes/empleados.routes.js';
+import { router as Clientes } from '../src/middleware/clientes.js';
+import { router as Restaurante } from '../src/middleware/restaurante.js';
+import { router as Empleados } from '../src/middleware/empleados.js';
 export async function dynamicRouter(req, res, next) {
     const { collection } = req.params;
     switch (collection) {
