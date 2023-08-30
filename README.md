@@ -559,6 +559,28 @@ Está solicitud se utiliza para registrar un repartidor en la base de datos, par
 
   ![repartidores](/assets/img/PUT-repartidores.png)
 
+
+## Restaurantes
+
+`Observacion`: Este endpoint no permite borrar restaurantes
+
+### Obtener la informacion de todos los restaurantes
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/restaurantes`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+  
+  ![restaurantes](/assets/img/GET-restaurantesV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los restaurantes registrados en la base de datos
+
+
 ------
 
 
