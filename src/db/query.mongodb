@@ -193,7 +193,7 @@ db.createCollection("empleados", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["emp_dni", "emp_primerNombre", "emp_primerApellido", "emp_telefono", "emp_email", "emp_fecha_nac", "emp_genero", "emp_tipo"],
+            required: ["emp_dni", "emp_primerNombre", "emp_primerApellido", "emp_telefono", "emp_email","emp_email_empresarial", "emp_fecha_nac", "emp_genero", "emp_tipo"],
             additionalProperties: true,
             properties: {
                 emp_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
@@ -201,10 +201,13 @@ db.createCollection("empleados", {
                 emp_primerApellido: { bsonType: "string", description: "Apellido debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
                 emp_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 emp_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
+                emp_email_empresarial: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
                 emp_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
+                emp_estado:{ enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo" },
                 emp_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
                 emp_genero: { enum: ['Masculino', 'Femenino', 'Otro'], description: "Genero solo puede ser Masculino, Femenino o Prefiero no decirlo" },
-                emp_tipo: { enum: ['Vdo', 'Grte', 'Admin'], description: "Tipo de empleado solo puede ser vendedor o gerente" },
+                emp_tipo: { enum: ['Vendedor', 'Gerente', 'Admin'], description: "Tipo de empleado solo puede ser vendedor o gerente" },
+                emp_codigo_restaurante: { bsonType: "objectId" },
                 emp_permisos: {
                     bsonType: 'object',
                     description: "Ingrese los permisos",
@@ -218,6 +221,25 @@ db.createCollection("empleados", {
         }
     }
 });
+
+
+use('db_rappi_campus')
+db.empleados.insertOne({
+    emp_dni:123456789,
+    emp_primerNombre: "Juan",
+    emp_primerApellido: "Perez",
+    emp_telefono: "123456789",
+    emp_email: "juanDominos@gmail.com",
+    emp_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
+    emp_estado: "Activo",
+    emp_fecha_nac: new Date("1999-01-01"),
+    emp_genero: "Masculino",
+    emp_tipo: "Gerente",
+    emp_codigo_restaurante: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
+    emp_permisos: {
+        "/empleados": ["*"]
+    }
+})
 
 use('db_rappi_campus');
 db.createCollection("pedidos", {
