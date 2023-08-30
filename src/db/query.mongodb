@@ -67,7 +67,7 @@ db.createCollection("repartidores", {
 
 use('db_rappi_campus')
 db.repartidores.insertOne({
-    rep_dni: 123456789,
+    rep_dni: 1127939990,
     rep_primerNombre: "Juan",
     rep_primerApellido: "Perez",
     rep_telefono: "123456789",
@@ -80,6 +80,7 @@ db.repartidores.insertOne({
     rep_permisos: {
         "/repartidores": ["*"],
         "/clientes": ["*"],
+        "/restaurante": ["*"],
     }
 })
 
@@ -98,6 +99,22 @@ db.clientes.insertOne({
     cli_permisos: {
         "/repartidores": ["*"],
         "/clientes": ["*"],
+    }
+})
+
+use('db_rappi_campus')
+db.restaurantes.insertOne({
+    res_nit: 12345,
+    res_nombre: "Dominos",
+    res_email: "dominos@gmail.com",
+    res_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
+    res_direccion: "Calle 123",
+    res_telefono: "123456789",
+    res_categoria: "FastFood",
+    res_hora_apertura: "10:00",
+    res_hora_cierre: "22:00",
+    res_permisos: {
+        "/restaurantes": ["*"],
     }
 })
 
@@ -120,7 +137,7 @@ db.createCollection("vehiculos", {
 });
 
 use('db_rappi_campus');
-db.createCollection("restaurante", {
+db.createCollection("restaurantes", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
@@ -129,9 +146,22 @@ db.createCollection("restaurante", {
             properties: {
                 res_nit: { bsonType: "int", description: "El NIT debe ser un entero y es requerido" },
                 res_nombre: { bsonType: "string", description: "El nombre del restaurante debe ser un string y es requerido" },
+                res_email: { bsonType: "string", description: "El correo electronico debe ser una direccion de correo valido y es requerido" },
+                res_password: { bsonType: "string", description: "La contraseña debe ser un string y es requerido" },
                 res_direccion: { bsonType: "string", description: "La direccion del restaurante debe ser un string y es requerido" },
                 res_telefono: { bsonType: "string", description: "El telefono solo puede contener números y es requerido", pattern: "^[0-9]+$" },
-                res_categoria: { enum: ['tematico', 'FastFood', 'buffet', 'gourmet', 'familiar'], description: "Esa categoria no está disponible" }
+                res_categoria: { enum: ['tematico', 'FastFood', 'buffet', 'gourmet', 'familiar'], description: "Esa categoria no está disponible" },
+                res_hora_apertura: { bsonType: "string", description: "La hora de apertura debe ser un string y es requerida", pattern: "^(\\d{2}:\\d{2})$" },
+                res_hora_cierre: { bsonType: "string", description: "La hora de cierre debe ser un string y es requerida", pattern: "^(\\d{2}:\\d{2})$" },
+                res_permisos: {
+                    bsonType: 'object',
+                    description: "Ingrese los permisos",
+                    required: ["/restaurantes"],
+                    additionalProperties: {
+                        bsonType: "array",
+                        description: "Ingrese la version autorizada",
+                    }
+                }
             }
         }
     }
