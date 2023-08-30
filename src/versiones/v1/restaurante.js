@@ -34,7 +34,7 @@ export const restaurantesV1Id = async (req, res) => {
   if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
   try {
     const result = await db.collection('restaurantes').findOne(
-        { res_nit: parseInt(req.params.nit) },
+        { res_nombre: parseInt(req.params.nombre) },
         {
             projection: {
                 _id: 0,

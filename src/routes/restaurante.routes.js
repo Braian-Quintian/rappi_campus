@@ -2,7 +2,7 @@ import { Router } from "express";
 import routesVersioning from 'express-routes-versioning';
 import { limitRestauranteGET, limitRestaurantePOST, limitRestaurantePUT } from "../config/limit.js";
 import { restaurantesDtoId,restaurantesDtoPost,restaurantesDtoPut } from "../DTO/restaurante.js";
-import { restaurantesV1,restaurantesV1Id, restaurantesV1_1, restaurantesV1_11 } from "../versiones/v4/restaurante.js";
+import { restaurantesV1,restaurantesV1Id, restaurantesV1_1, restaurantesV1_11 } from "../versiones/v1/restaurante.js";
 const restauranteRouter = Router();
 const version = routesVersioning();
 
