@@ -10,7 +10,7 @@ restauranteRouter.get('/', limitRestauranteGET(),version({
     "1.0.0": restaurantesV1
 }));
 
-restauranteRouter.get('/:nit', restaurantesDtoId, limitRestauranteGET(), version({
+restauranteRouter.get('/:nombre', restaurantesDtoId, limitRestauranteGET(), version({
     "1.0.1": restaurantesV1Id
 }));
 
