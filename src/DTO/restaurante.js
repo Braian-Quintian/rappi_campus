@@ -1,7 +1,7 @@
 import { param,body } from "express-validator";
 
 export const restaurantesDtoId = [
-    param('nombre').notEmpty().isNumeric().withMessage('El nombre es requerido')
+    param('nombre').notEmpty().isString().withMessage('El nombre es requerido')
     .matches(/^[a-zA-Z0-9 ]+$/).withMessage('El nombre debe ser un string')
 ]
 
