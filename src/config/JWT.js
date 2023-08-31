@@ -80,7 +80,6 @@ const validarToken = async (req, token) => {
             throw new Error("El usuario no tiene los permisos necesarios");
         }
     } catch (error) {
-        console.error("Error:", error.message);
         return false; // Devolver false en caso de error
     }
 }
