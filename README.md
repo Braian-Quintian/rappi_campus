@@ -659,6 +659,42 @@ Está solicitud se utiliza para registrar un restaurante en la base de datos, pa
 
 Está solicitud se utiliza para actualizar la informacion de un restaurante en especifico, para ello se debe enviar la informacion del restaurante por el body
 
+
+## Empleados
+
+`Observacion`: Este endpoint no permite borrar empleados
+
+### Obtener la informacion de todos los empleados
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/empleados`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/GET-empleadosV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los empleados registrados en la base de datos
+
+### Obtener la informacion de un empleado en especifico
+
+> Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/empleados/:dni`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/GET-empleadosV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un empleado en especifico, para ello se debe enviar el DNI del empleado por la url
 ------
 
 
