@@ -632,6 +632,33 @@ Está solicitud se utiliza para obtener la informacion sobre un restaurante en e
 Está solicitud se utiliza para registrar un restaurante en la base de datos, para ello se debe enviar la informacion del restaurante por el body
 
 
+### Actualizar la informacion de un restaurante
+
+> Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/restaurantes/:nombre`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+  
+```JSON
+  {
+    "telefono-restaurante": "31625",
+    "hora-apertura":"07:00",
+    "hora-cierre": "20:00"
+  }
+```
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/PUT-restaurantes.png)
+
+Está solicitud se utiliza para actualizar la informacion de un restaurante en especifico, para ello se debe enviar la informacion del restaurante por el body
+
 ------
 
 
