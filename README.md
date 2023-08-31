@@ -639,7 +639,7 @@ Está solicitud se utiliza para registrar un restaurante en la base de datos, pa
 **Detalles del api**
 
   - Metodo: `PUT`
-  - URL: `http://localhost:5050/restaurantes/:nombre`
+  - URL: `http://localhost:5050/restaurantes/:nit`
   - Version: `1.0.3`
 
 **Ejemplo de Datos JSON:**
