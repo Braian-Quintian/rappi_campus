@@ -559,6 +559,7 @@ Está solicitud se utiliza para registrar un repartidor en la base de datos, par
 
   ![repartidores](/assets/img/PUT-repartidores.png)
 
+Está solicitud se utiliza para actualizar la informacion de un repartidor en especifico, para ello se debe enviar la informacion del repartidor por el body
 
 ## Restaurantes
 
@@ -587,12 +588,49 @@ Está solicitud se utiliza para obtener la informacion sobre todos los restauran
 **Detalles del api**
 
   - Metodo: `GET`
-  - URL: `http://localhost:5050/restaurantes/:nit`
+  - URL: `http://localhost:5050/restaurantes/:nombre`
   - Version: `1.0.1`
 
 **Capturas de Pantalla**
 
   ![restaurantes](/assets/img/GET-restaurantesV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un restaurante en especifico, para ello se debe enviar el nombre del restaurante por la url
+
+### Registro de restaurantes
+
+>   Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/restaurantes`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+  
+  ```JSON
+  {
+    "nit-restaurante": 1234567890,
+    "nombre-restaurante": "Restaurante",
+    "direccion-restaurante": "Calle 123",
+    "correo-restaurante": "arepa@gmail.com",
+    "contraseña-restaurante":"1253461",
+    "telefono-restaurante": "31625",
+    "categoria-restaurante": "Comida Rapida",
+    "hora-apertura":"10:00",
+    "hora-cierre": "20:00"
+  }
+  ```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/POST-restaurantes.png)
+
+Está solicitud se utiliza para registrar un restaurante en la base de datos, para ello se debe enviar la informacion del restaurante por el body
+
 
 ------
 
