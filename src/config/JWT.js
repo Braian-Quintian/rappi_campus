@@ -48,6 +48,7 @@ const createToken = async (req, res, next) => {
                     "/clientes": ["*"],
                     "/pedidos": ["*"],
                     "detalle-pedidos": ["*"],
+                    "/productos": ["*"]
                 }
             })
         }
@@ -83,7 +84,6 @@ const validarToken = async (req, token) => {
     try {
         const encoder = new TextEncoder();
         const jwtData = await jwtVerify(token, encoder.encode(conexion.token));
-
         // Definir las colecciones en las que quieres buscar
         const collectionNames = ['empleados', 'repartidores', 'clientes','restaurantes','administradores'];
 
@@ -104,7 +104,6 @@ const validarToken = async (req, token) => {
                 }
             }
         }
-
         throw new Error("El usuario no se encuentra en ninguna colección");
     } catch (error) {
         return false; // Devolver false en caso de error
