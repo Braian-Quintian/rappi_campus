@@ -861,11 +861,9 @@ Está solicitud se utiliza para registrar un producto en la base de datos, para 
 
 ```JSON
 {
-  "precio-producto": 20000,
-  "descripcion-producto": "Pizza de peperoni",
-  "categoria-producto": "Comida Rapida",
-  "nombre-restaurante": "Dominos",
-  "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
+  "nombre-producto": "Pizza",
+  "precio-producto": "2000",
+  "descripcion-producto": "Pizza de peperoni"
 }
 ```
 
