@@ -2,7 +2,7 @@ import { Router } from "express";
 import routesVersioning from 'express-routes-versioning';
 import {limitEmpleadosGET,limitEmpleadosPOST,limitEmpleadosPUT} from '../config/limit.js';
 import { empleadosDtoId,empleadosDtoPost,empleadosDtoPut } from "../DTO/empleados.js";
-import { empleadosV1,empleadosV1Id,empleadosV1_1, empleadosV1_11 } from "../versiones/v6/empleados.js";
+import { empleadosV1,empleadosV1Id,empleadosV1_1, empleadosV1_11 } from "../versiones/v1/empleados.js";
 const empleadosRouter = Router();
 const version = routesVersioning();
 
