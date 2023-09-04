@@ -776,6 +776,103 @@ Está solicitud se utiliza para registrar un empleado en la base de datos, para 
 
 Está solicitud se utiliza para actualizar la informacion de un empleado en especifico, para ello se debe enviar la informacion del empleado por el body
 
+
+## Productos
+
+`Observacion`: Este endpoint no permite borrar productos
+
+### Obtener la informacion de todos los productos
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/productos`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/GET-productosV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los productos registrados en la base de datos
+
+### Obtener la informacion de un producto en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/productos/:id`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/GET-productosV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un producto en especifico, para ello se debe enviar el ID del producto por la url
+
+### Registro de productos
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/productos`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "nombre-producto": "Pizza",
+  "precio-producto": 20000,
+  "descripcion-producto": "Pizza de peperoni",
+  "categoria-producto": "Comida Rapida",
+  "nombre-restaurante": "Dominos",
+  "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/POST-productosV1_1.png)
+
+Está solicitud se utiliza para registrar un producto en la base de datos, para ello se debe enviar la informacion del producto por el body
+
+### Actualizar la informacion de un producto
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/productos/:id`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "precio-producto": 20000,
+  "descripcion-producto": "Pizza de peperoni",
+  "categoria-producto": "Comida Rapida",
+  "nombre-restaurante": "Dominos",
+  "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/PUT-productosV1_11.png)
+
+Está solicitud se utiliza para actualizar la informacion de un producto en especifico, para ello se debe enviar la informacion del producto por el body
 ------
 
 
