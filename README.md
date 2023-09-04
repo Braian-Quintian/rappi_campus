@@ -162,6 +162,8 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
 ## Como está compuesta la base de datos del proyecto
 
+![Diagrama](/assets/img/diagramaDB.png)
+
 **Módulo clientes: - Santiago**
 
 - **cli_dni**
@@ -695,6 +697,70 @@ Está solicitud se utiliza para obtener la informacion sobre todos los empleados
   ![empleados](/assets/img/GET-empleadosV1Id.png)
 
 Está solicitud se utiliza para obtener la informacion sobre un empleado en especifico, para ello se debe enviar el DNI del empleado por la url
+
+### Registro de empleados
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/empleados`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "dni-empleado": 123456,
+  "nombre-empleado": "Pepito",
+  "apellido-empleado": "Perez",
+  "telefono-empleado": "3131286121",
+  "correo-empleado": "pepe1@gmail.com",
+  "contraseña-empleado": "123",
+  "cumpleaños-empleado": "1999-07-07",
+  "genero-empleado": "Masculino",
+  "nombre-restaurante": "Dominos",
+  "tipo-empleado":"Gerente"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/POST-empleadosV1_1.png)
+
+Está solicitud se utiliza para registrar un empleado en la base de datos, para ello se debe enviar la informacion del empleado por el body
+
+### Actualizar la informacion de un empleado
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/empleados/:dni`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "telefono-empleado": "3131286121",
+  "estado-empleado": "Inactivo",
+  "tipo-empleado":"Gerente"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/PUT-empleadosV1_11.png)
+
+Está solicitud se utiliza para actualizar la informacion de un empleado en especifico, para ello se debe enviar la informacion del empleado por el body
+
 ------
 
 
