@@ -248,7 +248,6 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 - **det_ped_producto**
 - **det_ped_cantidad**
 
-
 # Instalacion
 
 1. Clona este repositorio en tu máquina local.
@@ -284,6 +283,20 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
 2. `NOTA`: Para utilizar los endpoints recuerda que debes tener un token que se genera con el endpoint `/login` (en la siguienta parte se te muestra como puedes pedir el token y utilizarlo)
 
+# Creacion de la base de datos
+ 
+ Entra en el archivo query.mongodb en la carpeta db deberías tener esto:
+
+ ![query](/assets/img/query.png)
+
+ presiona en el icono de play que se encuentra en la parte superior derecha, para crear toda la base de datos así:
+
+  ![query](/assets/img/query-run.png)
+
+  deberías obtener una respuesta como está:
+
+  ![query](/assets/img/query-ok.png)
+  
 ### Observacion: Para hacer los endpoints y generar los token debes tener ThunderClient instalado en visual studio code
 
 - **Autorización**
