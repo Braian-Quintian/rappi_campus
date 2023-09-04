@@ -1,5 +1,7 @@
 import { connect } from "../../connection/connection.js";
 import { validationResult } from "express-validator";
+import {ObjectId} from 'mongodb';
+import bcrypt from 'bcrypt';
 const db = await connect();
 
 export const empleadosV1 = async (req, res) => {
@@ -58,26 +60,35 @@ export const empleadosV1Id = async (req, res) => {
 }
 
 export const empleadosV1_1 = async (req, res) => {
+    if (!req.rateLimit) return;
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
     try {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) return res.status(400).json(errors);
-
-        const empleadoData = {
-            emp_dni: req.body.dni,
-            emp_primerNombre: req.body.primerNombre,
-            emp_primerApellido: req.body.primerApellido,
-            emp_telefono: req.body.telefono,
-            emp_email: req.body.email,
-            emp_password: req.body.password,
-            emp_fecha_nac: new Date(req.body.fecha_nac),
-            emp_genero: req.body.genero,
-            emp_tipo: req.body.tipo
-        };
-
-        let result = await empleados.insertOne(empleadoData);
-        res.send(result);
+        const restaurante = await db.collection('restaurantes').findOne({ res_nombre: req.body["nombre-restaurante"]});
+        if (!restaurante) return res.status(404).json({ message: 'No se encontró el restaurante' });
+        const cryptPass = await bcrypt.hash(req.body["contraseña-empleado"], 10);
+        const dataSend = {
+            emp_dni: parseInt(req.body["dni-empleado"]),
+            emp_primerNombre: req.body["nombre-empleado"],
+            emp_primerApellido: req.body["apellido-empleado"],
+            emp_telefono: req.body["telefono-empleado"],
+            emp_email: req.body["correo-empleado"],
+            emp_password: cryptPass,
+            emp_estado: "Activo",
+            emp_fecha_nac: new Date(req.body["cumpleaños-empleado"]),
+            emp_genero: req.body["genero-empleado"],
+            emp_tipo: req.body["tipo-empleado"],
+            emp_codigo_restaurante: new ObjectId(restaurante._id),
+            emp_permisos: {
+                "/empleados": ["1.0.2"],
+                "/empleados": ["1.0.3"],
+            },
+        }
+        const result = await db.collection('empleados').insertOne(dataSend);
+        res.status(201).json({ message: "El empleados ha sido creado exitosamente." });
     } catch (error) {
-        res.send(error);
+        console.log(error);
+        res.status(500).json({ message: error });
     }
 }
 
