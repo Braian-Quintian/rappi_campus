@@ -873,6 +873,8 @@ Está solicitud se utiliza para registrar un producto en la base de datos, para 
   ![productos](/assets/img/PUT-productosV1_11.png)
 
 Está solicitud se utiliza para actualizar la informacion de un producto en especifico, para ello se debe enviar la informacion del producto por el body
+
+
 ------
 
 
