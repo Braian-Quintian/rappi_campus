@@ -128,17 +128,6 @@ db.createCollection("productos", {
     }
 });
 
-use('db_rappi_campus');
-db.productos.insertOne({
-    pro_id: 3,
-    pro_nombre: "Helado",
-    pro_precio: 7,
-    pro_descripcion: "Delicioso helado de chocolate",
-    pro_categoria: "Postre",
-    pro_restaurante: 123,
-    pro_imagen: "url_de_la_imagen"
-});
-
 db.createCollection("empleados", {
     validator: {
         $jsonSchema: {
