@@ -118,7 +118,7 @@ db.createCollection("productos", {
             properties: {
                 pro_id: { bsonType: "int", description: "El id del producto debe ser un entero y es requerido" },
                 pro_nombre: { bsonType: "string", description: "El nombre del producto debe ser un string y es requerido" },
-                pro_precio: { bsonType: "int", description: "El precio del producto debe ser un entero y es requerido" },
+                pro_precio: { bsonType: "string", description: "El precio del producto debe ser un entero y es requerido" },
                 pro_descripcion: { bsonType: "string", description: "La descripcion del producto debe ser un string y es requerido" },
                 pro_categoria: { enum: ['Desayuno', 'Almuerzo', 'Cena', 'Postre'], description: "Esa categoria no está disponible" },
                 pro_restaurante: { bsonType: "int", description: "El restaurante al que pertenece debe ser un entero y es requerido" },
@@ -126,6 +126,17 @@ db.createCollection("productos", {
             }
         }
     }
+});
+
+use('db_rappi_campus');
+db.productos.insertOne({
+    pro_id: 3,
+    pro_nombre: "Helado",
+    pro_precio: 7,
+    pro_descripcion: "Delicioso helado de chocolate",
+    pro_categoria: "Postre",
+    pro_restaurante: 123,
+    pro_imagen: "url_de_la_imagen"
 });
 
 db.createCollection("empleados", {

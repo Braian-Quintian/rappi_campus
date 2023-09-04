@@ -16,10 +16,9 @@ export const productosDtoPost = [
     .matches(/^[a-zA-Z ]+$/).withMessage('La descripcion debe ser un string'),
     body('categoria-producto').notEmpty().isString().withMessage('La categoria es requerida')
     .isIn(['Desayuno', 'Almuerzo', 'Cena', 'Postre']).withMessage('La categoria debe ser Desayuno, Almuerzo, Cena o Postre'),
-    body('restaurante-producto').notEmpty().isString().withMessage('El restaurante es requerido')
+    body('nombre-producto').notEmpty().isString().withMessage('El restaurante es requerido')
     .matches(/^[a-zA-Z ]+$/).withMessage('El restaurante debe ser un string'),
     body('imagen-producto').notEmpty().isString().withMessage('La imagen es requerida')
-    .matches(/^[a-zA-Z ]+$/).withMessage('La imagen debe ser un string'),
 ]
 
 export const productosDtoPut = [
