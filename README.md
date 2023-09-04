@@ -136,17 +136,17 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 - Se implementarán más tecnologias que se irán añadiendo conforme el proyecto avanza
 
 ## Que tendrá el proyecto
-
-- Servicio de entrega a domicilio
-- Servicio de pago en linea
-- Servicio de rastreo de pedidos
-- Servicio de notificaciones
-- Servicio de valoraciones y opiniones
-- Servicio de historial de pedidos
-- Modulo de clientes
-- Modulo de repartidores
-- Modulo de restaurantes
-- Modulo de supermercados
+Estas se implementarán en un futuro con React
+> - Servicio de entrega a domicilio
+> - Servicio de pago en linea
+> - Servicio de rastreo de pedidos
+> - Servicio de notificaciones
+> - Servicio de valoraciones y opiniones
+> - Servicio de historial de pedidos
+ - Modulo de clientes
+ - Modulo de repartidores
+ - Modulo de restaurantes
+ - Modulo de empleados
 
 ## Que se espera del proyecto
 - Que sea un proyecto que pueda ser escalable
