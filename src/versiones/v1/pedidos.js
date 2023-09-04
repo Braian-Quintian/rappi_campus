@@ -9,13 +9,15 @@ export const pedidosV1 = async (req, res) => {
             {
                 $project: {
                   _id: 0,
-                  "pro-id": "$pro_id",
-                  "nombre-producto": "$pro_nombre",
-                  "precio-producto": "$pro_precio",
-                  "descripcion-producto": "$pro_descripcion",
-                  "categoria-producto": "$pro_categoria",
-                  "restaurante-producto": "$pro_restaurante",
-                  "imagen-producto": "$pro_imagen",
+                  "id-pedido": "$ped_id",
+                  "cliente-pedido": "$ped_cliente",
+                  "restaurante-pedido": "$ped_restaurante",
+                  "estado-pedido": "$ped_estado",
+                  "fecha-pedido": "$ped_fecha",
+                  "hora-pedido": "$ped_hora",
+                  "direccion-pedido": "$ped_direccion",
+                  "repartidor-pedido": "$ped_repartidor",
+                  "metodo-pago": "$ped_pago",
                 }
               }
         ]).toArray();
