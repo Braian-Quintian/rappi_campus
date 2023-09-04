@@ -312,6 +312,8 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
   - Si es un `cliente` debe colocarse la version: `1.0.0` 
   - Si es un `repartidor` debe colocarse la version: `2.0.0`
   - Si es un `empleado` debe colocarse la version: `3.0.0`
+  - Si es un `restaurante` debe colocarse la version: `4.0.0`
+  - Si es super administrador `admin` debe colocarse la version: `5.0.0`
 
   Ejemplo para colocar la version para los clientes:
 
