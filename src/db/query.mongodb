@@ -28,7 +28,6 @@ db.createCollection("clientes", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("repartidores", {
     validator: {
         $jsonSchema: {
@@ -63,7 +62,6 @@ db.createCollection("repartidores", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("vehiculos", {
     validator: {
         $jsonSchema: {
@@ -81,7 +79,6 @@ db.createCollection("vehiculos", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("restaurantes", {
     validator: {
         $jsonSchema: {
@@ -112,7 +109,6 @@ db.createCollection("restaurantes", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("productos", {
     validator: {
         $jsonSchema: {
@@ -132,7 +128,6 @@ db.createCollection("productos", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("empleados", {
     validator: {
         $jsonSchema: {
@@ -165,7 +160,6 @@ db.createCollection("empleados", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("pedidos", {
     validator: {
         $jsonSchema: {
@@ -187,7 +181,6 @@ db.createCollection("pedidos", {
     }
 });
 
-use('db_rappi_campus');
 db.createCollection("detalle_pedidos", {
     validator: {
         $jsonSchema: {
