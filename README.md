@@ -329,8 +329,8 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
     ```json
         {
-            "email": "ejemplo@example.com",
-            "password": "ejemplo123"
+            "correo": "ejemplo@example.com",
+            "contraseña": "ejemplo123"
         }
     ```
 
