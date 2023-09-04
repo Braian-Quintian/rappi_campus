@@ -17,7 +17,7 @@ export let limitLogin = ()=>{
 export let limitRepartidoresGET = ()=>{
     return rateLimit({
         windowMs: 30 * 1000,
-        max: 5,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
@@ -28,7 +28,7 @@ export let limitRepartidoresGET = ()=>{
 export let limitRepartidoresPOST = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 3,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -43,7 +43,7 @@ export let limitRepartidoresPOST = ()=> {
 export const limitRepartidoresPUT = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -58,7 +58,7 @@ export const limitRepartidoresPUT = ()=> {
 export const limitClientesGET = ()=> {
     return rateLimit({
         windowMs: 30 * 1000,
-        max: 5,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
@@ -69,7 +69,7 @@ export const limitClientesGET = ()=> {
 export const limitClientesPOST = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -84,7 +84,7 @@ export const limitClientesPOST = ()=> {
 export const limitClientesPUT = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -99,7 +99,7 @@ export const limitClientesPUT = ()=> {
 export const limitRestauranteGET = ()=> {
     return rateLimit({
         windowMs: 30 * 1000,
-        max: 5,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
@@ -110,7 +110,7 @@ export const limitRestauranteGET = ()=> {
 export const limitRestaurantePOST = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -125,7 +125,7 @@ export const limitRestaurantePOST = ()=> {
 export const limitRestaurantePUT = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -140,7 +140,7 @@ export const limitRestaurantePUT = ()=> {
 export const limitEmpleadosGET = ()=> {
     return rateLimit({
         windowMs: 30 * 1000,
-        max: 5,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
@@ -151,7 +151,7 @@ export const limitEmpleadosGET = ()=> {
 export const limitEmpleadosPOST = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
@@ -166,7 +166,7 @@ export const limitEmpleadosPOST = ()=> {
 export const limitEmpleadosPUT = ()=> {
     return rateLimit({
         windowMs: 60 * 1000,
-        max: 1,
+        max: 10,
         standardHeaders: true, 
         legacyHeaders: false, 
         skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
