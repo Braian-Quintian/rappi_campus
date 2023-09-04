@@ -177,3 +177,44 @@ export const limitEmpleadosPUT = ()=> {
         }
     })
 }
+
+export const limitProductosGET = ()=> {
+    return rateLimit({
+        windowMs: 30 * 1000,
+        max: 10,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })
+}
+
+export const limitProductosPOST = ()=> {
+    return rateLimit({
+        windowMs: 60 * 1000,
+        max: 10,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
+                return true;
+            }
+        }, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })
+}
+
+export const limitProductosPUT = ()=> {
+    return rateLimit({
+        windowMs: 60 * 1000,
+        max: 10,
+        standardHeaders: true, 
+        legacyHeaders: false, 
+        skip: (req,res)=>{if(req.headers["content-length"]>1000){res.status(413).send({message: "Tamaño de la solicitud alcanzado"});
+                return true;
+            }
+        }, 
+        message: (req,res)=>{res.status(429).send({message: "Limite alcanzado"});
+        }
+    })
+}
