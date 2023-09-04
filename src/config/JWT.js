@@ -64,21 +64,29 @@ const validarToken = async (req, token) => {
     try {
         const encoder = new TextEncoder();
         const jwtData = await jwtVerify(token, encoder.encode(conexion.token));
-        // Determinar la colección en función del endpoint
-        const collection = req.baseUrl.substring(1);
-        // Buscar los permisos del usuario en la colección correspondiente
-        const userPermissions = await db.collection(`${collection}`).findOne({
-            _id: new ObjectId(jwtData.payload.id),
-            [`${collection.substring(0, 3)}_permisos.${req.baseUrl}`]: { $exists: true }
-        });
-        // Verificar los permisos del usuario
-        const requiredPermissions = userPermissions[`${collection.substring(0, 3)}_permisos`][req.baseUrl];
-        if (requiredPermissions.includes('*') || requiredPermissions.includes(req.headers["accept-version"])) {
-            const { _id, permisos, ...usuario } = userPermissions;
-            return usuario;
-        } else {
-            throw new Error("El usuario no tiene los permisos necesarios");
+
+        // Definir las colecciones en las que quieres buscar
+        const collectionNames = ['empleados', 'repartidores', 'clientes','restaurantes'];
+
+        for (const collectionName of collectionNames) {
+            const collection = db.collection(collectionName);
+            const query = {
+                _id: new ObjectId(jwtData.payload.id),
+                [`${collectionName.substring(0, 3)}_permisos.${req.baseUrl}`]: { $exists: true }
+            };
+            const userPermissions = await collection.findOne(query);
+            if (userPermissions) {
+                const requiredPermissions = userPermissions[`${collectionName.substring(0, 3)}_permisos`][req.baseUrl];
+                if (requiredPermissions.includes('*') || requiredPermissions.includes(req.headers["accept-version"])) {
+                    const { _id, permisos, ...usuario } = userPermissions;
+                    return usuario;
+                } else {
+                    throw new Error("El usuario no tiene los permisos necesarios");
+                }
+            }
         }
+
+        throw new Error("El usuario no se encuentra en ninguna colección");
     } catch (error) {
         return false; // Devolver false en caso de error
     }
