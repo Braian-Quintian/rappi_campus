@@ -829,10 +829,11 @@ Está solicitud se utiliza para obtener la informacion sobre un producto en espe
 
 ```JSON
 {
+  "id-producto": 12,
   "nombre-producto": "Pizza",
-  "precio-producto": 20000,
+  "precio-producto": "20.00",
   "descripcion-producto": "Pizza de peperoni",
-  "categoria-producto": "Comida Rapida",
+  "categoria-producto": "Desayuno",
   "nombre-restaurante": "Dominos",
   "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
 }
