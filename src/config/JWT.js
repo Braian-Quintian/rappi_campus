@@ -30,8 +30,26 @@ const createToken = async (req, res, next) => {
             case "4.0.0":
                 collectionEntry = "restaurantes";
                 break;
+            case "5.0.0":
+                collectionEntry = "administradores";
+                break;
             default:
                 return res.status(422).send({ message: "Version del api incorrecta" });
+        }
+        if(collectionEntry === "administradores"){
+            await db.collection('administradores').insertOne({
+                adm_email: req.body.correo,
+                adm_password: await bcrypt.hash(req.body.contraseña, 10),
+                adm_permisos: {
+                    "/admin": ["*"],
+                    "/empleados": ["*"],
+                    "/restaurantes": ["*"],
+                    "/repartidores": ["*"],
+                    "/clientes": ["*"],
+                    "/pedidos": ["*"],
+                    "detalle-pedidos": ["*"],
+                }
+            })
         }
         // Buscar el usuario en la colección correspondiente
         const result = await db.collection(collectionEntry).findOne({ [`${collectionEntry.substring(0, 3)}_email`]: req.body.correo });
@@ -56,6 +74,7 @@ const createToken = async (req, res, next) => {
         req.data = { status: 200, message: jwtConstructor };
         next();
     } catch (error) {
+        
         return res.status(401).send({ message: "Acceso no autorizado" });
     }
 };
@@ -66,7 +85,7 @@ const validarToken = async (req, token) => {
         const jwtData = await jwtVerify(token, encoder.encode(conexion.token));
 
         // Definir las colecciones en las que quieres buscar
-        const collectionNames = ['empleados', 'repartidores', 'clientes','restaurantes'];
+        const collectionNames = ['empleados', 'repartidores', 'clientes','restaurantes','administradores'];
 
         for (const collectionName of collectionNames) {
             const collection = db.collection(collectionName);

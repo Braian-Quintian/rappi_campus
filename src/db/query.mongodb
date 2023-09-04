@@ -196,3 +196,26 @@ db.createCollection("detalle_pedidos", {
         }
     }
 });
+use('db_rappi_campus');
+db.createCollection("administradores",{
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["adm_email","adm_password", "adm_permisos"],
+            additionalProperties: true,
+            properties: {
+                adm_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
+                adm_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
+                adm_permisos: {
+                    bsonType: 'object',
+                    description: "Ingrese los permisos",
+                    required: ["/admin"],
+                    additionalProperties: {
+                        bsonType: "array",
+                        description: "Ingrese la version autorizada",
+                    }
+                }
+            }
+        }
+    }
+});
