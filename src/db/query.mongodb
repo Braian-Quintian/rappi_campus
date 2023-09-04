@@ -8,9 +8,7 @@ db.createCollection("clientes", {
             properties: {
                 cli_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
                 cli_primerNombre: { bsonType: "string", description: "Nombre debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
-                cli_segundoNombre: { bsonType: "string", description: "Segundo nombre debe ser un string", pattern: "^[A-Za-z ]+$" },
                 cli_primerApellido: { bsonType: "string", description: "Apellido debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
-                cli_segundoApellido: { bsonType: "string", description: "Segundo apellido debe ser un string", pattern: "^[A-Za-z ]+$" },
                 cli_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 cli_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
                 cli_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
@@ -64,60 +62,6 @@ db.createCollection("repartidores", {
         }
     }
 });
-
-use('db_rappi_campus')
-db.repartidores.insertOne({
-    rep_dni: 1127939990,
-    rep_primerNombre: "Juan",
-    rep_primerApellido: "Perez",
-    rep_telefono: "123456789",
-    rep_email: "bquintianromero@gmail.com",
-    rep_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
-    rep_estado: "Activo",
-    rep_fecha_nac: new Date("1999-01-01"),
-    rep_genero: "Masculino",
-    rep_codigo_vehiculo: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
-    rep_permisos: {
-        "/repartidores": ["*"],
-        "/clientes": ["*"],
-        "/restaurante": ["*"],
-    }
-})
-
-use('db_rappi_campus')
-db.clientes.insertOne({
-    cli_dni: 123456789,
-    cli_primerNombre: "Juan",
-    cli_primerApellido: "Perez",
-    cli_telefono: "123456789",
-    cli_email: "bquintianromero@gmail.com",
-    cli_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
-    cli_estado: "Activo",
-    cli_fecha_nac: new Date("1999-01-01"),
-    cli_genero: "Masculino",
-    cli_codigo_vehiculo: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
-    cli_permisos: {
-        "/repartidores": ["*"],
-        "/clientes": ["*"],
-    }
-})
-
-use('db_rappi_campus')
-db.restaurantes.insertOne({
-    res_nit: 12345,
-    res_nombre: "Dominos",
-    res_email: "dominos@gmail.com",
-    res_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
-    res_direccion: "Calle 123",
-    res_telefono: "123456789",
-    res_categoria: "FastFood",
-    res_hora_apertura: "10:00",
-    res_hora_cierre: "22:00",
-    res_permisos: {
-        "/restaurantes": ["*"],
-    }
-})
-
 
 use('db_rappi_campus');
 db.createCollection("vehiculos", {
@@ -193,7 +137,7 @@ db.createCollection("empleados", {
     validator: {
         $jsonSchema: {
             bsonType: "object",
-            required: ["emp_dni", "emp_primerNombre", "emp_primerApellido", "emp_telefono", "emp_email","emp_email_empresarial", "emp_fecha_nac", "emp_genero", "emp_tipo"],
+            required: ["emp_dni", "emp_primerNombre", "emp_primerApellido", "emp_telefono", "emp_email","emp_password","emp_estado","emp_fecha_nac", "emp_genero", "emp_tipo","emp_codigo_restaurante","emp_permisos"],
             additionalProperties: true,
             properties: {
                 emp_dni: { bsonType: "int", description: "Dni debe ser un entero y es requerido" },
@@ -201,7 +145,6 @@ db.createCollection("empleados", {
                 emp_primerApellido: { bsonType: "string", description: "Apellido debe ser un string y es requerido", pattern: "^[A-Za-z ]+$" },
                 emp_telefono: { bsonType: "string", description: "Telefono solo puede contener numeros y es requerido", pattern: "^[0-9]+$" },
                 emp_email: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
-                emp_email_empresarial: { bsonType: "string", description: "Correo electronico debe ser una direccion de correo valido y es requerido" },
                 emp_password: { bsonType: "string", description: "Contraseña debe ser un string y es requerido" },
                 emp_estado:{ enum: ['Activo', 'Inactivo'], description: "Estado solo puede ser Activo o Inactivo" },
                 emp_fecha_nac: { bsonType: "date", description: "Fecha de nacimiento debe ser una fecha valida y es requerida" },
@@ -222,25 +165,6 @@ db.createCollection("empleados", {
     }
 });
 
-
-use('db_rappi_campus')
-db.empleados.insertOne({
-    emp_dni:123456789,
-    emp_primerNombre: "Juan",
-    emp_primerApellido: "Perez",
-    emp_telefono: "123456789",
-    emp_email: "juanDominos@gmail.com",
-    emp_password: "$2b$10$No0.DYQe8AOQ/BCrU4RWYu8LqGcw/ktXozaVhM3kFjtzVDZlqnEvC",
-    emp_estado: "Activo",
-    emp_fecha_nac: new Date("1999-01-01"),
-    emp_genero: "Masculino",
-    emp_tipo: "Gerente",
-    emp_codigo_restaurante: ObjectId("64ee39b4af192295b0357f35"), // Assuming this is a valid ObjectId
-    emp_permisos: {
-        "/empleados": ["*"]
-    }
-})
-
 use('db_rappi_campus');
 db.createCollection("pedidos", {
     validator: {
@@ -250,8 +174,8 @@ db.createCollection("pedidos", {
             additionalProperties: true,
             properties: {
                 ped_id: { bsonType: "int", description: "El id del pedido debe ser un entero y es requerido" },
-                ped_cliente: { bsonType: "int", description: "El cliente debe ser un entero y es requerido" },
-                ped_restaurante: { bsonType: "int", description: "El restaurante debe ser un entero y es requerido" },
+                ped_cliente: { bsonType: "objectId", description: "El cliente es requerido" },
+                ped_restaurante: { bsonType: "objectId", description: "El restaurante es requerido" },
                 ped_estado: { enum: ['En proceso', 'En camino', 'Entregado'], description: "El estado solo puede ser En proceso, En camino o Entregado" },
                 ped_fecha: { bsonType: "date", description: "La fecha debe ser una fecha valida y es requerida" },
                 ped_hora: { bsonType: "string", description: "La hora debe ser un string y es requerida", pattern: "^[0-9]+$" },
@@ -271,10 +195,10 @@ db.createCollection("detalle_pedidos", {
             required: ["det_ped_id", "det_ped_pedido", "det_ped_producto", "det_ped_cantidad"],
             additionalProperties: true,
             properties: {
-                det_ped_id: { bsonType: "int", description: "El id del detalle del pedido debe ser un entero y es requerido" },
-                det_ped_pedido: { bsonType: "int", description: "El pedido debe ser un entero y es requerido" },
-                det_ped_producto: { bsonType: "int", description: "El producto debe ser un entero y es requerido" },
-                det_ped_cantidad: { bsonType: "int", description: "La cantidad debe ser un entero y es requerido" }
+                det_ped_pedido: { bsonType: "string", description: "El pedido debe ser un entero y es requerido" },
+                det_ped_producto: { bsonType: "string", description: "El producto debe ser un entero y es requerido" },
+                det_ped_cantidad: { bsonType: "int", description: "La cantidad debe ser un entero y es requerido" },
+                det_ped_total: { bsonType: "string", description: "El total debe ser un entero y es requerido" }
             }
         }
     }
