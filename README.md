@@ -162,6 +162,8 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 
 ## Como está compuesta la base de datos del proyecto
 
+![Diagrama](/assets/img/diagramaDB.png)
+
 **Módulo clientes: - Santiago**
 
 - **cli_dni**
@@ -246,6 +248,631 @@ Rappi Campus es un proyecto que permitira brindar un servicio de entrega de prod
 - **det_ped_producto**
 - **det_ped_cantidad**
 
+# Instalacion
+
+1. Clona este repositorio en tu máquina local.
+2. Asegúrate de tener instalado Node.js
+3. Crea un archivo .env
+4. Copia las variables de entorno del archivo `.env.example` y pegalas en el archivo `.env` que creaste.
+
+  `Nota`: porfavor llena los campos vacios con la informacion correspondiente.
+
+  `Recuerda que la informacion solitada la debes ingresar entre las "" correspondientes`
+
+  ![env](/assets/img/configuracion-env.png)
+
+5. Abre una terminal
+
+    ![terminal](/assets/img/terminal.png)
+
+    presiona en neva terminal:
+
+    ![nueva-terminal](/assets/img/nueva-terminal.png)
+
+6. Ejecuta el comando `npm run install` para instalar las dependencias del proyecto
+
+  una vez que haya finalizado la instalacion de las dependencias ejecuta el comando `npm run install-dev` para instalar la dependencia de desarrollo.
+
+  ![npm-run-install](/assets/img/npm-run-install.png)
+
+7. Ejecuta el comando `npm run dev` para iniciar el servidor
+
+  ![npm-run-dev](/assets/img/npm-run-dev.png)
+
+1. ¡Felicitaciones!, ya has iniciado el servidor y la base de datos y puedes proceder a  utilizar los endpoints
+
+2. `NOTA`: Para utilizar los endpoints recuerda que debes tener un token que se genera con el endpoint `/login` (en la siguienta parte se te muestra como puedes pedir el token y utilizarlo)
+
+# Creacion de la base de datos
+ 
+ Entra en el archivo query.mongodb en la carpeta db deberías tener esto:
+
+ ![query](/assets/img/query.png)
+
+ presiona en el icono de play que se encuentra en la parte superior derecha, para crear toda la base de datos así:
+
+  ![query](/assets/img/query-run.png)
+
+  deberías obtener una respuesta como está:
+
+  ![query](/assets/img/query-ok.png)
+  
+### Observacion: Para hacer los endpoints y generar los token debes tener ThunderClient instalado en visual studio code
+
+- **Autorización**
+
+  `NOTA`: Antes de utilizar cualquier endpoint debes pedir primero un token de autorizacion.
+
+  *Obeservacion* el token solamente dura `3h`  después de este tiempo tendrás que pedir otro
+
+  Este es el ejemplo para solicitar un token:
+  
+  `Observacion` Debes colocar la version del api de pediendo de que tipo de usuario es:
+
+  - Si es un `cliente` debe colocarse la version: `1.0.0` 
+  - Si es un `repartidor` debe colocarse la version: `2.0.0`
+  - Si es un `empleado` debe colocarse la version: `3.0.0`
+  - Si es un `restaurante` debe colocarse la version: `4.0.0`
+  - Si es super administrador `admin` debe colocarse la version: `5.0.0`
+
+  Ejemplo para colocar la version para los clientes:
+
+  ![ApiVersion](/assets/img/apiVersion.png)
+
+  Si no especificas el api version te dara un error `422` ya que está diseñado para que trabaje con distintos login para cada tipo de usuario
+
+  ![ApiVersion](/assets/img/errorApiVersion.png)
+  
+  Para generar un token es mediante el email y la contraseña del usuario enviadola por el body con un method `POST`
+
+  `Observacion`: El email y la contraseña se envia como este ejemplo:
+
+    ```json
+        {
+            "correo": "ejemplo@example.com",
+            "contraseña": "ejemplo123"
+        }
+    ```
+
+    `Observacion`:  El email y la contraseña se envian como string
+
+    ![Ejemplo](/assets/img/EJEMPLO-login.png)
+
+    si el usuario no está previamente registrado, mostrará un error `403` y deberás registrarlo en la base de datos para poder generar el token. **(Más adelante se muestra como registrar un usuario)**; Aquí se muestra el error
+
+    ![Ejemplo](/assets/img/envio-credenciales.png)
+
+    Si el usuario está registrado, se generará un token de autorización que deberás utilizar para acceder a los endpoints protegidos.
+
+  `NOTA`: Este token solamente funcionará para las collection que tenga acceso dicho usuario.
+
+  ![Solicitud_Correcta](/assets/img/tokenCorrecto.png)
+  
+  `NOTA`: No olvides reemplazar el `localhost` por la ip de tu servidor y el `5050` por el puerto que hayas definido en las variables de entorno, u/o que se estes utilizando.
+
+```shell
+  http://localhost:5050/login
+```
+
+- Implementación del Token
+
+    ![generar-token](assets/img/generar-token.png)
+
+- Tendrás un token parecido a esto así, ejemplo:
+    - `iJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IYZNkgMMMgYWVMTlNDCIsImlhdCI6MTY5MzI0Mzc3NywiZXhwIjoxNjkzMjU0NTc3fQ.uaWqrDM64Nrj0lRLx4Vn6E0tGBjJf9P`
+
+- Luego debe colocar en la pestaña Headers de la siguiente manera:
+  
+- donde dice `header` escribe `Authorization` y pulsa en el recuadro para que se active el envió del token de autorización, así:
+
+    ![implementacion-token](/assets/img/implementacion-token.png)
+
+- Coloca la palabra `Bearer` y un espacio, luego pega el token que habias copiado previamente, :
+
+    ![token-implementado](/assets/img/token-implementado.png)
+
+- Una vez que hayas implementado el token puedes proceder a utilizar los endpoints.
+
+**TENER EN CUENTA:**
+
+  `NOTA`: recuerda que el token solamente dura `3h`  después de este tiempo tendrás que pedir otro
+
+  `NOTA`: El token solo servira para la collection que tienes acceso
+
+  `NOTA`: Si presentas algun error al momento de solicitar el token, revisa que hayas ingresado correctamente los datos, si el error persiste, revisa que estes escribriendo correctamente la palabra `Bearer`
+
+
+- **LIMITES DE PETICION DE ENPOINTS**
+  
+  `NOTA`: Los endpoints tienen un limite de peticiones, si se excede el limite de peticiones por minuto, el servidor respondera con un error 429, si esto sucede, espera y vuelve a intentarlo.
+  **Cabe mencionar que el limit para cada endpoint es distinto por lo tanto no se proporciona informacion de cuanto tiempo tendrás que esperar para volver a intentarlo**
+
+  `Observacion`: Para el enpoint de `/login` tienes 3 intentos, después de eso tendrás que esperar una hora para volver a intentarlo.
+
+# Endpoints
+## Clientes
+
+`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
+
+### Obtener la informacion de los clientes
+
+>Solo los administradores tienen acceso
+
+**Detalles de la API**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/clientes`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/GET-clientesV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los clientes registrados en la base de datos
+
+### Obtener la informacion de un cliente en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles de la API**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/clientes/:dni`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/GET-clientesV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un cliente en especifico, para ello se debe enviar el DNI del repartidor por la url
+
+### Registro de Clientes
+
+> Solo  los clientes y los administradores tienen acceso
+
+**Detalles de la API**
+
+- Método: `POST`
+- URL: `http://localhost:5050/clientes`
+- Versión: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```json
+{
+  "dni-cliente": "123456789",
+  "nombre-cliente": "Nombre",
+  "apellido-cliente": "Apellido",
+  "telefono-cliente": "1234567890",
+  "correo-cliente": "correo@example.com",
+  "contraseña-cliente": "contraseña123",
+  "cumpleaños-cliente": "1990-01-01",
+  "genero-cliente": "Masculino"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/POST-clientesV1_1.png)
+
+**Notas**
+- Todos los campos son obligatorios a menos que se indique lo contrario.
+- El campo "dni-cliente" debe ser único para cada cliente, por el momento se puede repetir el dni, en la proxima version del api se corregirá eso.
+- Asegúrate de proporcionar el formato correcto para el campo "cumpleaños-cliente" (AAAA-MM-DD).
+
+
+### Actualizar los datos del cliente:
+
+> Solo los clientes y los administradores tienen acceso
+
+**Detalles de la API**
+
+- Método: `PUT`
+- URL: `http://localhost:5050/clientes/:dni`
+- Versión: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "telefono-cliente": "324156216",
+  "estado-cliente": "Inactivo"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![clientes](/assets/img/PUT-clientesV1_11.png)
+
+**Notas**
+- Solo se pueden actualizar los campos que se indica
+- En una siguiente version del api se podrán actualizar más datos.
+
+## Repartidores
+
+`Observacion`: Este endpoint no permite borrar clientes, solamente se puede cambiar de estado Activo a Inactivo
+
+### Obtener la informacion de los repartidores
+
+> Solo los administradores tienen acceso
+
+**Detalles de la API**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/repartidores`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![repartidores](/assets/img/GET-repartidorV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los repartidores registrados en la base de datos
+
+### Obtener informacion de un repartidor en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles de la API**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/repartidores/:dni`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![repartidores](/assets/img/GET-repartidorV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un repartidor en especifico, para ello se debe enviar el DNI del repartidor por la url
+
+### Registro de repartidor
+
+> Los repartidores y los administradores tienen acceso
+
+**Detalles de la API**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/repartidores`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "dni-repartidor": 1234567890,
+  "nombre-repartidor": "Juan Pérez",
+  "apellido-repartidor": "González",
+  "telefono-repartidor": "555-123-4567",
+  "correo-repartidor": "juan.perez@example.com",
+  "contraseña-repartidor": "secretpass123",
+  "cumpleaños-repartidor": "1995-08-15",
+  "genero-repartidor": "Masculino",
+  "vehiculo-marca": "Honda",
+  "vehiculo-modelo": "CBR500R",
+  "vehiculo-placa": "ABC123",
+  "vehiculo-color": "Rojo",
+  "tipo-vehiculo": "Motos"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![repartidores](/assets/img/POST-repartidores.png)
+
+Está solicitud se utiliza para registrar un repartidor en la base de datos, para ello se debe enviar la informacion del repartidor por el body
+
+### Actualizar la informacion de un repartidor
+
+> Los repartidores y los administradores tienen acceso
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/repartidores/:dni`
+  - Version: `1.0.3`
+
+  ![repartidores](/assets/img/PUT-repartidores.png)
+
+Está solicitud se utiliza para actualizar la informacion de un repartidor en especifico, para ello se debe enviar la informacion del repartidor por el body
+
+## Restaurantes
+
+`Observacion`: Este endpoint no permite borrar restaurantes
+
+### Obtener la informacion de todos los restaurantes
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/restaurantes`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+  
+  ![restaurantes](/assets/img/GET-restaurantesV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los restaurantes registrados en la base de datos
+
+### Obtener la informacion de un restaurante en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/restaurantes/:nombre`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/GET-restaurantesV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un restaurante en especifico, para ello se debe enviar el nombre del restaurante por la url
+
+### Registro de restaurantes
+
+>   Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/restaurantes`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+  
+  ```JSON
+  {
+    "nit-restaurante": 1234567890,
+    "nombre-restaurante": "Restaurante",
+    "direccion-restaurante": "Calle 123",
+    "correo-restaurante": "arepa@gmail.com",
+    "contraseña-restaurante":"1253461",
+    "telefono-restaurante": "31625",
+    "categoria-restaurante": "Comida Rapida",
+    "hora-apertura":"10:00",
+    "hora-cierre": "20:00"
+  }
+  ```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/POST-restaurantes.png)
+
+Está solicitud se utiliza para registrar un restaurante en la base de datos, para ello se debe enviar la informacion del restaurante por el body
+
+
+### Actualizar la informacion de un restaurante
+
+> Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/restaurantes/:nit`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+  
+```JSON
+  {
+    "telefono-restaurante": "31625",
+    "hora-apertura":"07:00",
+    "hora-cierre": "20:00"
+  }
+```
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![restaurantes](/assets/img/PUT-restaurantes.png)
+
+Está solicitud se utiliza para actualizar la informacion de un restaurante en especifico, para ello se debe enviar la informacion del restaurante por el body
+
+
+## Empleados
+
+`Observacion`: Este endpoint no permite borrar empleados
+
+### Obtener la informacion de todos los empleados
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/empleados`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/GET-empleadosV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los empleados registrados en la base de datos
+
+### Obtener la informacion de un empleado en especifico
+
+> Los restaurantes y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/empleados/:dni`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/GET-empleadosV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un empleado en especifico, para ello se debe enviar el DNI del empleado por la url
+
+### Registro de empleados
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/empleados`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "dni-empleado": 123456,
+  "nombre-empleado": "Pepito",
+  "apellido-empleado": "Perez",
+  "telefono-empleado": "3131286121",
+  "correo-empleado": "pepe1@gmail.com",
+  "contraseña-empleado": "123",
+  "cumpleaños-empleado": "1999-07-07",
+  "genero-empleado": "Masculino",
+  "nombre-restaurante": "Dominos",
+  "tipo-empleado":"Gerente"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/POST-empleadosV1_1.png)
+
+Está solicitud se utiliza para registrar un empleado en la base de datos, para ello se debe enviar la informacion del empleado por el body
+
+### Actualizar la informacion de un empleado
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/empleados/:dni`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "telefono-empleado": "3131286121",
+  "estado-empleado": "Inactivo",
+  "tipo-empleado":"Gerente"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![empleados](/assets/img/PUT-empleadosV1_11.png)
+
+Está solicitud se utiliza para actualizar la informacion de un empleado en especifico, para ello se debe enviar la informacion del empleado por el body
+
+
+## Productos
+
+`Observacion`: Este endpoint no permite borrar productos
+
+### Obtener la informacion de todos los productos
+
+> Solo los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/productos`
+  - Version: `1.0.0`
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/GET-productosV1.png)
+
+Está solicitud se utiliza para obtener la informacion sobre todos los productos registrados en la base de datos
+
+### Obtener la informacion de un producto en especifico
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `GET`
+  - URL: `http://localhost:5050/productos/:id`
+  - Version: `1.0.1`
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/GET-productosV1Id.png)
+
+Está solicitud se utiliza para obtener la informacion sobre un producto en especifico, para ello se debe enviar el ID del producto por la url
+
+### Registro de productos
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `POST`
+  - URL: `http://localhost:5050/productos`
+  - Version: `1.0.2`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "nombre-producto": "Pizza",
+  "precio-producto": 20000,
+  "descripcion-producto": "Pizza de peperoni",
+  "categoria-producto": "Comida Rapida",
+  "nombre-restaurante": "Dominos",
+  "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas crear.***
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/POST-productosV1_1.png)
+
+Está solicitud se utiliza para registrar un producto en la base de datos, para ello se debe enviar la informacion del producto por el body
+
+### Actualizar la informacion de un producto
+
+> Los empleados y los administradores tienen acceso
+
+**Detalles del api**
+
+  - Metodo: `PUT`
+  - URL: `http://localhost:5050/productos/:id`
+  - Version: `1.0.3`
+
+**Ejemplo de Datos JSON:**
+
+```JSON
+{
+  "precio-producto": 20000,
+  "descripcion-producto": "Pizza de peperoni",
+  "categoria-producto": "Comida Rapida",
+  "nombre-restaurante": "Dominos",
+  "imagen-producto": "https://www.dominos.com.co/Imagenes/Productos/1/1.jpg"
+}
+```
+
+***Asegúrate de reemplazar los valores en el ejemplo con los datos reales del usuario que deseas actualizar.***
+
+**Capturas de Pantalla**
+
+  ![productos](/assets/img/PUT-productosV1_11.png)
+
+Está solicitud se utiliza para actualizar la informacion de un producto en especifico, para ello se debe enviar la informacion del producto por el body
 
 
 ------

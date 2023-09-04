@@ -1,5 +1,116 @@
-export const repartidoresV1 = (req,res,next) => {
-    if(!req.rateLimit) return; 
-    console.log("ESTAMOS EN REPARTIDORES");
-    console.log("se redirecciona a router llamando los metodos")
-}
+import { validationResult } from 'express-validator';
+import { connect } from '../../connection/connection.js'
+import bcrypt from 'bcrypt';
+const db = await connect();
+
+export const repartidoresV1 = async (req, res, next) => {
+  if (!req.rateLimit) return;
+  try {
+    const result = await db.collection('repartidores').aggregate([
+      {
+        $project: {
+          _id: 0,
+          "dni-repartidor": "$rep_dni",
+          "nombre-repartidor": "$rep_primerNombre",
+          "apellido-repartidor": "$rep_primerApellido",
+          "telefono-repartidor": "$rep_telefono",
+          "correo-repartidor": "$rep_email",
+          "estado-repartidor": "$rep_estado",
+          "genero-repartidor": "$rep_genero",
+          "vehiculo-repartidor": "$rep_codigo_vehiculo",
+        }
+      }
+    ]).toArray();
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const repartidoresV1Id = async (req, res, next) => {
+  if (!req.rateLimit) return;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  try {
+    const result = await db.collection('repartidores').findOne(
+      { rep_dni: parseInt(req.params.id) },
+      {
+        projection: {
+          _id: 0,
+          "dni-repartidor": "$rep_dni",
+          "nombre-repartidor": "$rep_primerNombre",
+          "apellido-repartidor": "$rep_primerApellido",
+          "telefono-repartidor": "$rep_telefono",
+          "correo-repartidor": "$rep_email",
+          "estado-repartidor": "$rep_estado",
+          "genero-repartidor": "$rep_genero",
+          "vehiculo-repartidor": "$rep_codigo_vehiculo",
+        },
+      }
+    );
+    if (!result) return res.status(404).json({ message: 'No se encontró el repartidor' });
+    res.status(200).json(result);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const repartidoresV1_1 = async (req, res, next) => {
+  if (!req.rateLimit) return;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  try {
+    const dataSendVehiculo = {
+      veh_marca: req.body["vehiculo-marca"],
+      veh_modelo: req.body["vehiculo-modelo"],
+      veh_placa: req.body["vehiculo-placa"],
+      veh_color: req.body["vehiculo-color"],
+      veh_tipo: req.body["tipo-vehiculo"],
+    };
+    const resultVehiculo = await db.collection('vehiculos').insertOne(dataSendVehiculo);
+    const cryptPass = await bcrypt.hash(req.body["contraseña-repartidor"], 10);
+    const dataSend = {
+      rep_dni: parseInt(req.body["dni-repartidor"]),
+      rep_primerNombre: req.body["nombre-repartidor"],
+      rep_primerApellido: req.body["apellido-repartidor"],
+      rep_telefono: req.body["telefono-repartidor"],
+      rep_email: req.body["correo-repartidor"],
+      rep_password: cryptPass,
+      rep_estado: "Activo",
+      rep_fecha_nac: new Date(req.body["cumpleaños-repartidor"]),
+      rep_genero: req.body["genero-repartidor"],
+      rep_codigo_vehiculo: resultVehiculo.insertedId,
+      rep_permisos: {
+        "/repartidores": ["1.0.2"],
+        "/repartidores": ["1.0.3"],
+      }
+    };
+    await db.collection('repartidores').insertOne(dataSend);
+    res.status(200).json({ message: 'El repartidor ha sido creado exitosamente.' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const repartidoresV1_11 = async (req, res, next) => {
+  if (!req.rateLimit) return;
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) return res.status(400).json({ errors: errors.array() });
+  try {
+    const repartidorId = parseInt(req.params.id);
+    const updatedData = {
+      rep_telefono: req.body["telefono-repartidor"],
+      rep_estado: req.body["estado-repartidor"],
+    };
+    const result = await db.collection('repartidores').updateOne(
+      { rep_dni: repartidorId },
+      { $set: updatedData }
+    );
+    if (result.modifiedCount === 0) {
+      return res.status(404).json({ message: 'No se encontró el repartidor' });
+    }
+    res.status(200).json({ message: 'Repartidor actualizado exitosamente' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

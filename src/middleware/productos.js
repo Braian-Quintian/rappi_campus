@@ -1,10 +1,10 @@
 import Routes from 'express';
 import passportHelper from '../config/passportHelpert.js'
-import repartidoresRoutes from '../routes/repartidores.routes.js'
+import productosRoutes from '../routes/productos.routes.js'
 const router = Routes();
 
 router.use(passportHelper.authenticate('bearer', { session:false}))
-router.use('/', repartidoresRoutes)
+router.use('/', productosRoutes)
 
 export {
     router
