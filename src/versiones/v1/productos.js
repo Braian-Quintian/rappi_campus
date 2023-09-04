@@ -63,7 +63,7 @@ export const productosV1_1 = async (req, res) => {
             pro_precio: req.body["precio-producto"],
             pro_descripcion: req.body["descripcion-producto"],
             pro_categoria: req.body["categoria-producto"],
-            pro_restaurante: req.body["restaurante-producto"],
+            pro_restaurante: req.body["nombre-producto"],
             pro_imagen: req.body["imagen-producto"]
         }
         await db.collection('productos').insertOne(dataSend);
