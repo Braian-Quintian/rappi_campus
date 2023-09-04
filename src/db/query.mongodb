@@ -120,7 +120,7 @@ db.createCollection("productos", {
                 pro_nombre: { bsonType: "string", description: "El nombre del producto debe ser un string y es requerido" },
                 pro_precio: { bsonType: "int", description: "El precio del producto debe ser un entero y es requerido" },
                 pro_descripcion: { bsonType: "string", description: "La descripcion del producto debe ser un string y es requerido" },
-                pro_categoria: { enum: ['bebida', 'comida', 'postre'], description: "Esa categoria no está disponible" },
+                pro_categoria: { enum: ['Desayuno', 'Almuerzo', 'Cena', 'Postre'], description: "Esa categoria no está disponible" },
                 pro_restaurante: { bsonType: "int", description: "El restaurante al que pertenece debe ser un entero y es requerido" },
                 pro_imagen: { bsonType: "string", description: "La imagen del producto debe ser un string" }
             }
@@ -175,7 +175,11 @@ db.createCollection("pedidos", {
                 ped_hora: { bsonType: "string", description: "La hora debe ser un string y es requerida", pattern: "^[0-9]+$" },
                 ped_direccion: { bsonType: "string", description: "La direccion debe ser un string y es requerida" },
                 ped_repartidor: { bsonType: "int", description: "El repartidor debe ser un entero y es requerido" },
-                ped_pago: { enum: ['Efectivo', 'Tarjeta'], description: "El pago solo puede ser Efectivo o Tarjeta" }
+                ped_pago: { enum: ['Efectivo', 'Tarjeta'], description: "El pago solo puede ser Efectivo o Tarjeta" },
+                ped_productos: {
+                    bsonType: 'object',
+                    description: "Ingrese los productos"
+                }
             }
         }
     }
